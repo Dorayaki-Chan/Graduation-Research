@@ -31,9 +31,9 @@
 ### LRF編
 周りが見える凄いレーダーみたいなやつ
 1. LRFをPCにぶっ刺す(有線LAN or 太ったUSB接続)
-2. IPアドレスの設定[^参考]
+2. IPアドレスの設定[^1]
 
-[^参考] [IPアドレスの設定(Windows)](https://sourceforge.net/p/urgnetwork/wiki/ip_address_jp/)
+[^1]: 参考[IPアドレスの設定(Windows)](https://sourceforge.net/p/urgnetwork/wiki/ip_address_jp/)
 
 ### PDRベルト
 歩幅(規定値)と歩数と角度で位置推定を行うらしい
