@@ -64,25 +64,38 @@
 ### 運用編
 
 1. Visual Studioで`source\main\urg_library\vs2017\cpp\urg_cpp.sln`を起動！
-2. `source\main\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp`を見つける
+2. 写真のを見つける
+> ![picture 13](images/posts/README/1679998469963.png) 
+3. 確認！
+```cpp
+device_or_ip_name_ = "172.16.0.10";
+```
+4. `source\main\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp`を見つける
 > ![picture 12](images/posts/README/1679998056670.png)  
-3. 26行目の絶対パスを書き換える
+5. 26行目の絶対パスを書き換える
 > ![picture 8](images/posts/README/1679996473294.png)   
 ```cpp
 #include <D:\Programming\SotsuKen\source\main\urg_library\samples\cpp\Connection_information_me.h>
 ```
-4. 41行目をさっきメモったIPアドレスに書き換える
+6. 41行目をさっきメモったIPアドレスに書き換える
 > ![picture 9](images/posts/README/1679996728620.png)  
 ```cpp
 #define ESPIPADDR  "10.84.233.91"//"192.168.11.18"//192.168.208.233, 
 ```
-5. そこら辺に転がってる電池とベルトを繋げる
+7. そこら辺に転がってる電池とベルトを繋げる
 > ![picture 11](images/posts/README/IMG_5591.jpg)
-6. 水平なところでベルトの電源を入れる
-7. 青いLEDが点滅したらしたら、黒いボタンを押す
-8. デバグなしでアプリを実行！
+8. 水平なところでベルトの電源を入れる
+9. 青いLEDが点滅したらしたら、黒いボタンを押す
+10. デバグなしでアプリを実行！
 > ![picture 10](images/posts/README/1679997689586.png)
-9. 黒い粒粒と、ベルトを振って水色の線が出てくればOK
+11. 黒い粒粒と、ベルトを振って水色の線が出てくればOK
 > ![picture 11](images/posts/README/1679997967991.png)  
 
+
+### ログについて
+UGRPDR5直下にある  
+- LRF:純粋な座標を**mm**単位で出力
+- Walk:差分を**cm**単位で出力
+
+![picture 14](images/posts/README/1679998840006.png)  
 
