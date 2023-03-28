@@ -26,7 +26,7 @@
 > - フォルダーパス `\Arduino\I2Cdev`, `\Arduino\MPU6050`
 
 
-## セッティング
+## やってみよう
 
 ### LRF編
 周りが見える凄いレーダーみたいなやつ
@@ -35,12 +35,29 @@
 2. IPアドレスの設定[^1]
 > IPアドレス:`172.16.0.11`  
 > サブネット マスク:`255.255.255.0`  
-> ![picture 2](images/posts/README/1679993990231.png)  
-
-
+> ![picture 2](images/posts/README/1679993990231.png)
+3. UrgBenri起動
+> IPアドレス:`172.16.0.10`  
+> ![picture 3](images/posts/README/1679994513479.png)  
 
 [^1]: 参考:[IPアドレスの設定(Windows)](https://sourceforge.net/p/urgnetwork/wiki/ip_address_jp/)
 
 ### PDRベルト
 歩幅(規定値)と歩数と角度で位置推定を行うらしい
 
+1. ベルトの基盤をPCに刺す！
+> ![picture 4](images\posts\README\IMG_5590.jpg)
+2. 書き込むプログラムを起動!
+> `\source\main\myArduino\myESP-socketconnection-4-1020\myESP-socketconnection-4-1020.ino`
+3. 22行目(?)LABになってるか確認！
+> ![picture 6](images/posts/README/1679995612007.png)  
+
+4. 記載されてるWi-FiにPCを繋げる！ 
+> ![picture 5](images/posts/README/1679995452050.png)
+5. シリアルモニター起動！
+> 
+
+6. Arduinoに書き込む！
+> ![picture 4](images/posts/README/1679995195344.png)  
+7. 表示されるIPアドレスをメモ！
+> ![picture 7](images/posts/README/address.png)
