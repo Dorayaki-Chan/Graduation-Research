@@ -42,7 +42,7 @@
 
 [^1]: 参考:[IPアドレスの設定(Windows)](https://sourceforge.net/p/urgnetwork/wiki/ip_address_jp/)
 
-### PDRベルト
+### PDRベルト編
 歩幅(規定値)と歩数と角度で位置推定を行うらしい
 
 1. ベルトの基盤をPCに刺す！
@@ -60,3 +60,13 @@
 > ![picture 4](images/posts/README/1679995195344.png)  
 7. 表示されるIPアドレスをメモ！
 > ![picture 7](images/posts/README/address.png)
+
+### 運用編
+
+1. Visual Studioで`source\main\urg_library\vs2017\cpp\urg_cpp.sln`を起動！
+2. 26行目の絶対パスを書き換える
+> ![picture 8](images/posts/README/1679996473294.png)  
+> ```cpp
+#include <D:\Programming\SotsuKen\source\main\urg_library\samples\cpp\Connection_information_me.h>```
+3. 41行目をさっきメモったIPアドレスに書き換える
+> ![picture 9](images/posts/README/1679996728620.png)  
