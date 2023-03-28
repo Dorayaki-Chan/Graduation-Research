@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+      <FILENAME>Urg_driver.cpp</FILENAME>
+      <LINE>37</LINE>
+      <COLUMN>27</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>列挙型 'qrk::Lidar::measurement_type_t' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。</DESCRIPTION>
+    <FUNCTION>qrk::Urg_driver::pImpl::{ctor}</FUNCTION>
+    <DECORATED>??0pImpl@Urg_driver@qrk@@QEAA@XZ</DECORATED>
+    <FUNCLINE>36</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+      <FILENAME>Urg_driver.cpp</FILENAME>
+      <LINE>90</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>列挙型 'qrk::Lidar::connection_type_t' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。</DESCRIPTION>
+    <FUNCTION>qrk::Urg_driver::open</FUNCTION>
+    <DECORATED>?open@Urg_driver@qrk@@UEAA_NPEBDJW4connection_type_t@Lidar@2@@Z</DECORATED>
+    <FUNCLINE>90</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+      <FILENAME>Urg_driver.cpp</FILENAME>
+      <LINE>98</LINE>
+      <COLUMN>26</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>列挙型 'urg_connection_type_t' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。</DESCRIPTION>
+    <FUNCTION>qrk::Urg_driver::open</FUNCTION>
+    <DECORATED>?open@Urg_driver@qrk@@UEAA_NPEBDJW4connection_type_t@Lidar@2@@Z</DECORATED>
+    <FUNCLINE>90</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+      <FILENAME>Urg_driver.cpp</FILENAME>
+      <LINE>186</LINE>
+      <COLUMN>43</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>列挙型 'urg_measurement_type_t' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。</DESCRIPTION>
+    <FUNCTION>qrk::Urg_driver::start_measurement</FUNCTION>
+    <DECORATED>?start_measurement@Urg_driver@qrk@@UEAA_NW4measurement_type_t@Lidar@2@HH@Z</DECORATED>
+    <FUNCLINE>167</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

@@ -1,0 +1,2 @@
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\sensor_parameter.exe.lastcodeanalysissucceeded
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\sensor_parameter\x64\Debug\NativeCodeAnalysis.read.1.tlog

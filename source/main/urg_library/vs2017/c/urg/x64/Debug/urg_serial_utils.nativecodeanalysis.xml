@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+      <FILENAME>urg_serial_utils_windows.c</FILENAME>
+      <LINE>52</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>6053</DEFECTCODE>
+    <DESCRIPTION>前の 'strncpy' への呼び出しは、文字列 'buffer' を 0 で終了しない可能性があります。</DESCRIPTION>
+    <FUNCTION>swap_item</FUNCTION>
+    <DECORATED>swap_item</DECORATED>
+    <FUNCLINE>41</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>1</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_utils_windows.c</FILENAME>
+        <LINE>43</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_utils_windows.c</FILENAME>
+        <LINE>44</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_utils_windows.c</FILENAME>
+        <LINE>46</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_utils_windows.c</FILENAME>
+        <LINE>50</LINE>
+        <COLUMN>11</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'buffer' は 'strncpy' からの出力です。0 で終了しない可能性があります</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_utils_windows.c</FILENAME>
+        <LINE>51</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_utils_windows.c</FILENAME>
+        <LINE>52</LINE>
+        <COLUMN>11</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'buffer' は 0 で終了する必要がありますが、0 で終了しない可能性があります</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

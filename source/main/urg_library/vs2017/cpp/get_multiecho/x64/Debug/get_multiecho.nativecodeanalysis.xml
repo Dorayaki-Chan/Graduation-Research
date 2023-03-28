@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\</FILEPATH>
+      <FILENAME>get_multiecho.cpp</FILENAME>
+      <LINE>23</LINE>
+      <COLUMN>49</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>演算のオーバーフロー: 4 バイトの値に演算子 '+' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '+' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。</DESCRIPTION>
+    <FUNCTION>`anonymous-namespace'::print_echo_data</FUNCTION>
+    <DECORATED>?print_echo_data@?A0xda7b1f78@@YAXAEBV?$vector@JV?$allocator@J@std@@@std@@HH@Z</DECORATED>
+    <FUNCLINE>18</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\</FILEPATH>
+      <FILENAME>get_multiecho.cpp</FILENAME>
+      <LINE>23</LINE>
+      <COLUMN>40</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。</DESCRIPTION>
+    <FUNCTION>`anonymous-namespace'::print_echo_data</FUNCTION>
+    <DECORATED>?print_echo_data@?A0xda7b1f78@@YAXAEBV?$vector@JV?$allocator@J@std@@@std@@HH@Z</DECORATED>
+    <FUNCLINE>18</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\</FILEPATH>
+      <FILENAME>get_multiecho.cpp</FILENAME>
+      <LINE>63</LINE>
+      <COLUMN>45</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>列挙型 'qrk::Lidar::connection_type_t' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>55</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

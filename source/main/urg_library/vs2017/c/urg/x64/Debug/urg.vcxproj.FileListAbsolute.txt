@@ -1,0 +1,2 @@
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\urg.lib.lastcodeanalysissucceeded
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\c\urg\x64\Debug\NativeCodeAnalysis.read.1.tlog

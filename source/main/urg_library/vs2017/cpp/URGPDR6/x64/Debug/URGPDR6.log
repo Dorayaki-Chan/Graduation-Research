@@ -1,0 +1,4 @@
+﻿  URGPDR6.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\URGPDR6\URGPDR6.cpp(153,27): warning C4244: 'return': 'WPARAM' から 'int' への変換です。データが失われる可能性があります。
+Connection_information_me.obj : warning LNK4075: /EDITANDCONTINUE は /INCREMENTAL:NO の指定によって無視されます。
+  URGPDR6.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\URGPDR6.exe

@@ -1,0 +1,4 @@
+﻿  WindowsProject3.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject3\WindowsProject3.cpp(54,12): warning C4244: 'return': 'WPARAM' から 'int' への変換です。データが失われる可能性があります。
+  WindowsProject3.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\WindowsProject3.exe
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject3\WindowsProject3.cpp(24): warning C28251: 'WinMain' に対する整合性のない注釈: このインスタンスには 注釈なし が含まれます。c:\program files (x86)\windows kits\10\include\10.0.19041.0\um\winbase.h(1006) を参照してください。

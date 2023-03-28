@@ -1,0 +1,4 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: 中間ディレクトリ (x64\Debug\) に別のプロジェクト (get_distance.vcxproj) と共有されているファイルが含まれています。これにより、クリーンしてリビルド動作が適切に行われない可能性があります。
+  get_distance_me.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\get_distance_me.cpp(39,44): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  get_distance_me.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\get_distance_me.exe

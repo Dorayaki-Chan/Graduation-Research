@@ -1,0 +1,7 @@
+﻿  ticks.cpp
+  Urg_driver.cpp
+D:\Programming\SotsuKen\urg_library-1.2.7\src\Urg_driver.cpp(571,55): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+D:\Programming\SotsuKen\urg_library-1.2.7\src\Urg_driver.cpp(577,67): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+D:\Programming\SotsuKen\urg_library-1.2.7\src\Urg_driver.cpp(583,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  コードを生成中...
+  urg_cpp.vcxproj -> D:\Programming\SotsuKen\urg_library-1.2.7\vs2017\cpp\x64\Debug\urg_cpp.lib

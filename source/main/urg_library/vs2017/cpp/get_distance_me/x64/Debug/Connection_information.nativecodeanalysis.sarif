@@ -1,0 +1,180 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'qrk::Lidar::connection_type_t' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/tombow/Documents/GitHub/ARILab/urg_library/samples/cpp/Connection_information.cpp"
+                },
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 9,
+                  "endLine": 27,
+                  "endColumn": 40
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "qrk::Connection_information::pImpl::set_serial_connection",
+                  "decoratedName": "?set_serial_connection@pImpl@Connection_information@qrk@@QEAAXPEBD@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'qrk::Connection_information::pImpl::connection_type_' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/tombow/Documents/GitHub/ARILab/urg_library/samples/cpp/Connection_information.cpp"
+                },
+                "region": {
+                  "startLine": 54,
+                  "startColumn": 1,
+                  "endLine": 54,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "qrk::Connection_information::pImpl::{ctor}",
+                  "decoratedName": "??0pImpl@Connection_information@qrk@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "qrk::Connection_information::pImpl::connection_type_"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'qrk::Connection_information::pImpl::baudrate_or_port_number_' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/tombow/Documents/GitHub/ARILab/urg_library/samples/cpp/Connection_information.cpp"
+                },
+                "region": {
+                  "startLine": 54,
+                  "startColumn": 1,
+                  "endLine": 54,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "qrk::Connection_information::pImpl::{ctor}",
+                  "decoratedName": "??0pImpl@Connection_information@qrk@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "qrk::Connection_information::pImpl::baudrate_or_port_number_"
+          }
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.31.31107.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX64\\x64\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00007FF628C79CC0 -il C:\\Users\\tombow\\AppData\\Local\\Temp\\_CL_87ecf669ast -typedil -f ..\\..\\..\\samples\\cpp\\Connection_information.cpp -Ze -D_MSC_EXTENSIONS -Zp16 -pc \\:/ -D_MSC_VER=1931 -D_MSC_FULL_VER=193131107 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -GR -D_CPPRTTI -I C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\include\\cpp -nologo -W 3 -diagnostics:column -Ot -DCODE_ANALYSIS -DWIN32 -D_DEBUG -D_CONSOLE -D_UNICODE -DUNICODE -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MDd -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -Zc:wchar_t -Zc:forScope -Fox64\\Debug\\Connection_information.obj -Fdx64\\Debug\\vc143.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\cpp\\get_distance -analyze:rulesetdirectory ;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX64\\x64\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\cpp\\get_distance\\Include\\um -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\cpp\\get_distance\\Include\\um -I C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\cpp\\get_distance\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/tombow/Documents/GitHub/ARILab/urg_library/samples/cpp/get_distance.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "177d3ec13c8887009cc3f664900c42fbb036e9ff5b4be28c9d87b975bbd90d7a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/cpp/urg_driver.h"
+          },
+          "hashes": {
+            "sha-256": "c326c113c06a58a8c89b9fe0ece65a3945d20676791fcc83f900f9f42f300759"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/cpp/lidar.h"
+          },
+          "hashes": {
+            "sha-256": "503a5d4ff96c1100b8759caabe288d1af5916579c262900bd0af651d487d8e49"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/samples/cpp/connection_information.h"
+          },
+          "hashes": {
+            "sha-256": "710b36281eae364d1a518985008288163765039ae497b7db3208f6966ab47dc3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/cpp/math_utilities.h"
+          },
+          "hashes": {
+            "sha-256": "c5fef14eeb99ab124bc382d6b527853ce4f5012ff22b903126f53bb6cb8f0663"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/cpp/detect_os.h"
+          },
+          "hashes": {
+            "sha-256": "ea58972c52d0de8c00f48432c6d846baaa2fea07980e373de402a9a37bf05ba0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/tombow/Documents/GitHub/ARILab/urg_library/samples/cpp/Connection_information.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "07a6ed3b3d35eeaa1780a9be4952cd4a69c4d860fe6491fdaa1f5c21854c088b"
+          }
+        }
+      ]
+    }
+  ]
+}

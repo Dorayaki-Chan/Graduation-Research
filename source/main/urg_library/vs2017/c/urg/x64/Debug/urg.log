@@ -1,0 +1,15 @@
+﻿  urg_connection.c
+  urg_debug.c
+  urg_ring_buffer.c
+  urg_sensor.c
+  urg_serial.c
+  urg_serial_utils.c
+  urg_tcpclient.c
+  urg_utils.c
+  C/C++ のコード分析を実行しています...
+  コードを生成中...
+  urg.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\urg.lib
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\urg_sensor.c(108): warning C26451: 演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\urg_serial_windows.c(49): warning C6053: 前の '_snprintf' への呼び出しは、文字列 'adjusted_device' を 0 で終了しない可能性があります。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\urg_serial_windows.c(174): warning C6031: 戻り値が無視されました: 'ReadFile'
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\urg_serial_utils_windows.c(52): warning C6053: 前の 'strncpy' への呼び出しは、文字列 'buffer' を 0 で終了しない可能性があります。

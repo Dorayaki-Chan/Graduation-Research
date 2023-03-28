@@ -1,0 +1,205 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.31.31107.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX64\\x64\\c1.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00007FF628C79CC0 -il C:\\Users\\tombow\\AppData\\Local\\Temp\\_CL_292d30daast -typedil -f ..\\..\\..\\src\\urg_debug.c -Ze -D_MSC_EXTENSIONS -Zp16 -pc \\:/ -D_MSC_VER=1931 -D_MSC_FULL_VER=193131107 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -I C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\include\\c -nologo -W 3 -diagnostics:column -Ot -DCODE_ANALYSIS -DWIN32 -D_DEBUG -D_CONSOLE -D_UNICODE -DUNICODE -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -Fox64\\Debug\\urg_debug.obj -FdC:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\cpp\\x64\\Debug\\urg.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\c\\urg -analyze:rulesetdirectory ;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX64\\x64\\EspXEngine.dll -FC -errorreport:prompt -wd 4996 -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\c\\urg\\Include\\um -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\c\\urg\\Include\\um -I C:\\Users\\tombow\\Documents\\GitHub\\ARILab\\urg_library\\vs2017\\c\\urg\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/src/urg_utils.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "9b8539b9826fa3d3d7a452cc9d594a55cc372c8b9ff825147518855bd4c501df"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_utils.h"
+          },
+          "hashes": {
+            "sha-256": "12312eb0fddc47c008bef4576b0b6e96a7eb26c6803229e9b23441385ace1877"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_sensor.h"
+          },
+          "hashes": {
+            "sha-256": "589aa49185de9a4a63d59006ae032719267fc547edf11096d93fb077b2ffd3cc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_connection.h"
+          },
+          "hashes": {
+            "sha-256": "ba7e40815297b61f4deb783521790422180d5ba5990881c974e2e71002dc3ddd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_serial.h"
+          },
+          "hashes": {
+            "sha-256": "b0b38a015474ad2bf69df00a5f934859f01038d10af624ef6430e116c602c131"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_detect_os.h"
+          },
+          "hashes": {
+            "sha-256": "96227fe66ac78563ede288e3780665d5711156371d2d74f5d1211e3981fe999a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_ring_buffer.h"
+          },
+          "hashes": {
+            "sha-256": "4b58c94feaccc278f7b1cc0c1a7c6eadc4247da8897b64f0a8175f4a673df59e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_tcpclient.h"
+          },
+          "hashes": {
+            "sha-256": "68c199307bdc59e38f858bf5c2ef956b510acbce9040591e67218635506e1531"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_errno.h"
+          },
+          "hashes": {
+            "sha-256": "05ffc4d6e88eaefbad4d47b7ff8d3c8963871c60dd1aa821a3ca234e45e92fd2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/src/urg_tcpclient.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "19a2510c90b71315e550c8e622cd57a0b5a317e9e32e9301628a45e3c2955abd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/tombow/Documents/GitHub/ARILab/urg_library/src/urg_serial_utils_windows.c"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "314aba1227eab8f5f3a259ab84c7c7db11163a761bd64ae802f37e9049c740c0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/src/urg_serial_utils.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "ab4fbba1135ddf917134a81e7870a234b6a75ebd217013cbeadfbb526b6ed723"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_serial_utils.h"
+          },
+          "hashes": {
+            "sha-256": "9c7595cb4e16769246aa524bb84f7b1f1ed5561f816126282dbd9e0a385733d0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/tombow/Documents/GitHub/ARILab/urg_library/src/urg_serial_windows.c"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "5013eb50d0f05c0380e12bac8f8a66bf04ccabba13a39c738fe23bea516b4439"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/src/urg_serial.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "87cb65c3d4538d556329324e25734cd87dd094fcbef7db0bee68e61549c6d0b4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/tombow/Documents/GitHub/ARILab/urg_library/src/urg_sensor.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "bf1965c8671bd598e5fa1d8f52346856ed373f63ade39147fcbeca40158360cc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/src/urg_ring_buffer.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "697190409e3b189daa74a44bb54d51d04aa7fd1d85e7de902bae5d0fff2d556d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/src/urg_debug.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "4e72edc0bc7f01283c53b794e620c96af0dc063a00d836d5da84024e2c64001a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/tombow/documents/github/arilab/urg_library/include/c/urg_debug.h"
+          },
+          "hashes": {
+            "sha-256": "02467fca711887c45d227767a0c332cd3a5433b3272b025a8313c39bfe956e95"
+          }
+        }
+      ]
+    }
+  ]
+}

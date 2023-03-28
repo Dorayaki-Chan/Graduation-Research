@@ -1,0 +1,4 @@
+﻿  windows_twn_draw.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\windows_twn_draw\windows_twn_draw.cpp(56,12): warning C4244: 'return': 'WPARAM' から 'int' への変換です。データが失われる可能性があります。
+MSVCRTD.lib(exe_main.obj) : error LNK2019: 未解決の外部シンボル main が関数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) で参照されました
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\windows_twn_draw.exe : fatal error LNK1120: 1 件の未解決の外部参照

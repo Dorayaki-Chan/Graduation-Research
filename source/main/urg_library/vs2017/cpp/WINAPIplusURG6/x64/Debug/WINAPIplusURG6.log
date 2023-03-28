@@ -1,0 +1,5 @@
+﻿  WINAPIplusURG6.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\WINAPIplusURG6.cpp(73,35): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\WINAPIplusURG6.cpp(159,16): warning C4244: 'return': 'WPARAM' から 'int' への変換です。データが失われる可能性があります。
+Connection_information_me.obj : warning LNK4075: /EDITANDCONTINUE は /INCREMENTAL:NO の指定によって無視されます。
+  WINAPIplusURG6.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\WINAPIplusURG6.exe

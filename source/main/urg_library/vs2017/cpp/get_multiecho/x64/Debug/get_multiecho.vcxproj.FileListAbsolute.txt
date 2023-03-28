@@ -1,0 +1,2 @@
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\get_multiecho.exe.lastcodeanalysissucceeded
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\get_multiecho\x64\Debug\NativeCodeAnalysis.read.1.tlog

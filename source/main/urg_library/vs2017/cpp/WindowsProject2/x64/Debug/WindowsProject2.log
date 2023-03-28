@@ -1,0 +1,46 @@
+﻿  WindowsProject2.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\get_distance_me.cpp(57,12): warning C4244: 'return': 'WPARAM' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(8,12): error C2084: 関数 'int WinMain(HINSTANCE,HINSTANCE,LPSTR,int)' は既に本体を持っています。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\get_distance_me.cpp(27): message : 'WinMain' の以前の定義を確認してください
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(21,36): warning C4302: '型キャスト': 'LPSTR' から 'WORD' へ切り詰めます。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(22,40): warning C4302: '型キャスト': 'LPSTR' から 'WORD' へ切り詰めます。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(26,38): warning C4302: '型キャスト': 'LPSTR' から 'WORD' へ切り詰めます。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(47,18): error C2084: 関数 'LRESULT WndProc(HWND,UINT,WPARAM,LPARAM)' は既に本体を持っています。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\get_distance_me.cpp(14): message : 'WndProc' の以前の定義を確認してください
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(64,6): error C2084: 関数 'void MyPaint(HWND)' は既に本体を持っています。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\get_distance_me.cpp(62): message : 'MyPaint' の以前の定義を確認してください
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(67,2): error C2065: 'Connection_information': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(67,25): error C2146: 構文エラー: ';' が、識別子 'information' の前に必要です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(67,37): error C2065: 'argc': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(67,43): error C2065: 'argv': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(67,25): error C3861: 'information': 識別子が見つかりませんでした
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(70,2): error C2065: 'Urg_driver': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(70,13): error C2146: 構文エラー: ';' が、識別子 'urg' の前に必要です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(70,13): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(71,7): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(71,16): error C2065: 'information': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(72,3): error C2065: 'information': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(73,3): error C2065: 'information': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(74,3): error C2065: 'cout': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(75,7): error C2065: 'information': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(75,50): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(75,64): error C2065: 'endl': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(82,2): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(82,29): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(82,49): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(85,2): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(85,24): error C2653: 'Urg_driver': 識別子がクラス名でも名前空間名でもありません。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(85,36): error C2065: 'Distance': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(85,46): error C2653: 'Urg_driver': 識別子がクラス名でも名前空間名でもありません。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(85,58): error C2065: 'Infinity_times': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(87,3): error C2065: 'vector': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(87,10): error C2062: 型 'long' は不要です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(90,8): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(90,25): error C2065: 'data': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(91,4): error C2065: 'cout': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(91,46): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(91,60): error C2065: 'endl': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(95,24): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(97,14): error C2065: 'urg': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(97,19): error C2065: 'data': 定義されていない識別子です。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WindowsProject2\WindowsProject2.cpp(97,3): error C3861: 'print_data': 識別子が見つかりませんでした

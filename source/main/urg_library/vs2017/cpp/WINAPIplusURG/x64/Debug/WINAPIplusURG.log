@@ -1,0 +1,1 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(480,5): error MSB8041: このプロジェクトには、MFC 個のライブラリが必要です。使用されているツールセットとアーキテクチャについては、Visual Studio インストーラー (個々のコンポーネント タブ) からインストールします。

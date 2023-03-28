@@ -1,0 +1,4 @@
+﻿  Socket4.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WINAPIplusSocket4\Socket4.cpp(167,17): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+Connection_information_me.obj : warning LNK4075: /EDITANDCONTINUE は /INCREMENTAL:NO の指定によって無視されます。
+  WINAPIplusSocket4.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\SocketCon4.exe

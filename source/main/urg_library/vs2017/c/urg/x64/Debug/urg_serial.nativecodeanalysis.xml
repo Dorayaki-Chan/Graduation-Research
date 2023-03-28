@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+      <FILENAME>urg_serial_windows.c</FILENAME>
+      <LINE>49</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>6053</DEFECTCODE>
+    <DESCRIPTION>前の '_snprintf' への呼び出しは、文字列 'adjusted_device' を 0 で終了しない可能性があります。</DESCRIPTION>
+    <FUNCTION>serial_open</FUNCTION>
+    <DECORATED>serial_open</DECORATED>
+    <FUNCLINE>39</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>1</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_windows.c</FILENAME>
+        <LINE>42</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_windows.c</FILENAME>
+        <LINE>43</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_windows.c</FILENAME>
+        <LINE>45</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_windows.c</FILENAME>
+        <LINE>48</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>この '_snprintf' への呼び出しは、'adjusted_device' を 0 で終了しない可能性があります</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_windows.c</FILENAME>
+        <LINE>49</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'adjusted_device' は 'CreateFileA' への入力です (c:\program files (x86)\windows kits\10\include\10.0.19041.0\um\fileapi.h:81 で宣言)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+        <FILENAME>urg_serial_windows.c</FILENAME>
+        <LINE>49</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'adjusted_device' は、'CreateFileA' の SAL 注釈によって 0 で終了する必要があります</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\tombow\Documents\GitHub\ARILab\urg_library\src\</FILEPATH>
+      <FILENAME>urg_serial_windows.c</FILENAME>
+      <LINE>174</LINE>
+      <COLUMN>12</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>戻り値が無視されました: 'ReadFile'</DESCRIPTION>
+    <FUNCTION>internal_receive</FUNCTION>
+    <DECORATED>internal_receive</DECORATED>
+    <FUNCLINE>163</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

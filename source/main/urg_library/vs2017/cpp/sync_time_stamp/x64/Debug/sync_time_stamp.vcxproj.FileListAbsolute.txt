@@ -1,0 +1,2 @@
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\sync_time_stamp.exe.lastcodeanalysissucceeded
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\sync_time_stamp\x64\Debug\NativeCodeAnalysis.read.1.tlog

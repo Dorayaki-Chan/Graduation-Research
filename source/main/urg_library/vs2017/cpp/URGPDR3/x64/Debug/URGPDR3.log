@@ -1,0 +1,5 @@
+﻿  URGPDR3.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\URGPDR3\URGPDR3.cpp(311,17): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\URGPDR3\URGPDR3.cpp(168): warning C4715: 'WinMain': 値を返さないコントロール パスがあります。
+Connection_information_me.obj : warning LNK4075: /EDITANDCONTINUE は /INCREMENTAL:NO の指定によって無視されます。
+  URGPDR3.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\URGPDR3.exe

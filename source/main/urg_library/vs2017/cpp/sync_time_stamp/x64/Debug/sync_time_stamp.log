@@ -1,0 +1,8 @@
+﻿  Connection_information.cpp
+  sync_time_stamp.cpp
+  C/C++ のコード分析を実行しています...
+  コードを生成中...
+  sync_time_stamp.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\sync_time_stamp.exe
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\Connection_information.cpp(27): warning C26812: 列挙型 'qrk::Lidar::connection_type_t' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\Connection_information.cpp(54): warning C26495: 変数 'qrk::Connection_information::pImpl::connection_type_' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\sync_time_stamp.cpp(41): warning C26812: 列挙型 'qrk::Lidar::connection_type_t' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。

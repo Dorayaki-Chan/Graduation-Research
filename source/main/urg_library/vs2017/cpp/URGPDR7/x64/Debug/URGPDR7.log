@@ -1,0 +1,2 @@
+﻿  URGPDR7.cpp
+D:\Programming\SotsuKen\渡すプログラム\urg_library\vs2017\cpp\URGPDR7\URGPDR7.cpp(25,10): fatal error C1083: include ファイルを開けません。'C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\Connection_information_me.h':No such file or directory

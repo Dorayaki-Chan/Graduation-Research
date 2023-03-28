@@ -1,0 +1,6 @@
+﻿  WINAPIplusURG5.cpp
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WINAPIplusURG5\WINAPIplusURG5.cpp(62,35): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WINAPIplusURG5\WINAPIplusURG5.cpp(142,15): warning C4244: 'return': 'WPARAM' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\WINAPIplusURG5\WINAPIplusURG5.cpp(209,6): warning C4101: 'param2': ローカル変数は 1 度も使われていません。
+Connection_information_me.obj : warning LNK4075: /EDITANDCONTINUE は /INCREMENTAL:NO の指定によって無視されます。
+  WINAPIplusURG5.vcxproj -> C:\Users\tombow\Documents\GitHub\ARILab\urg_library\vs2017\cpp\x64\Debug\WINAPIplusURG5.exe
