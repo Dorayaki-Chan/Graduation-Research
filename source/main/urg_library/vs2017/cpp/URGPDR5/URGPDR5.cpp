@@ -23,7 +23,7 @@ TODO:
 #include <stdio.h>
 #include <string>
 #include "Urg_driver.h"
-#include <D:\Programming\SotsuKen\“n‚·ƒvƒƒOƒ‰ƒ€\urg_library\samples\cpp\Connection_information_me.h>
+#include <D:\Programming\SotsuKen\source\main\urg_library\samples\cpp\Connection_information_me.h>
 #include "math_utilities.h"
 #include <iostream>
 #include <stdio.h>
