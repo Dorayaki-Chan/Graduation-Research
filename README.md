@@ -65,8 +65,12 @@
 
 1. Visual Studioで`source\main\urg_library\vs2017\cpp\urg_cpp.sln`を起動！
 2. 26行目の絶対パスを書き換える
-> ![picture 8](images/posts/README/1679996473294.png)  
-> ```cpp
-#include <D:\Programming\SotsuKen\source\main\urg_library\samples\cpp\Connection_information_me.h>```
+> ![picture 8](images/posts/README/1679996473294.png)   
+```cpp
+#include <D:\Programming\SotsuKen\source\main\urg_library\samples\cpp\Connection_information_me.h>
+```
 3. 41行目をさっきメモったIPアドレスに書き換える
 > ![picture 9](images/posts/README/1679996728620.png)  
+```cpp
+#define ESPIPADDR  "10.84.233.91"//"192.168.11.18"//192.168.208.233, 
+```
