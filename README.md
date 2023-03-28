@@ -31,7 +31,7 @@
 ### LRF編
 周りが見える凄いレーダーみたいなやつ
 1. LRFをPCにぶっ刺す(有線LAN or 太ったUSB接続)
-> ![picture 1](images\posts\README\IMG_5589.jpg)
+> ![picture 1](images/posts/README/IMG_5589.jpg)
 2. IPアドレスの設定[^1]
 > IPアドレス:`172.16.0.11`  
 > サブネット マスク:`255.255.255.0`  
