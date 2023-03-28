@@ -55,8 +55,7 @@
 4. 記載されてるWi-FiにPCを繋げる！ 
 > ![picture 5](images/posts/README/1679995452050.png)
 5. シリアルモニター起動！
-> 
-
+> ![picture 7](images/posts/README/1679995884771.png)  
 6. Arduinoに書き込む！
 > ![picture 4](images/posts/README/1679995195344.png)  
 7. 表示されるIPアドレスをメモ！
