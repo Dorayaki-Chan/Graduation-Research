@@ -214,8 +214,6 @@ void loop() {
                 Serial.println("");
             }
 
-
-
         //Serial.println("New Client."); 
         //char sendDataChar[16];
         //snprintf(sendDataChar,16,"S0000000000E");//Sで始まり,Eで終わる　エラー回避
@@ -229,8 +227,8 @@ void loop() {
             int  yWalk = 0;
             int8_t walkCount=0;//歩数が保存されてる 64       
             while(iTime-iAgoTime<1000){//1s毎に送信
-            //10sループ
-                // read a packet from FIFO
+                //10sループ
+                // FIFO からパケットを読み取る
                 if (mpu.dmpGetCurrentFIFOPacket(fifoBuffer)) {
                     mpu.dmpGetQuaternion(&q, fifoBuffer);
                     mpu.dmpGetAccel(&aa, fifoBuffer);
@@ -264,7 +262,7 @@ void loop() {
                         iDegreeRad = ypr[0];
                         Serial.print(" ypr: ");
                         Serial.print(iDegreeRad * 180/M_PI);
-                         
+                        
                         Serial.print(" DisDegree: ");
                         Serial.print((iDegreeRad-iDisDegreeRad)* 180/M_PI);
                         xWalk += strideLength * sin(iDegreeRad-iDisDegreeRad);
@@ -285,9 +283,10 @@ void loop() {
             char sendDataChar[16];
             snprintf(sendDataChar,16,"S%05d%05dE",xWalk,yWalk);//Sで始まり,Eで終わる　エラー回避
             client.write(sendDataChar);
+
             //#ifdef SERIALPRINT
-                Serial.print("send data = ");
-                Serial.println(sendDataChar);
+            Serial.print("send data = ");
+            Serial.println(sendDataChar);
             //#endif
         }
         client.stop();
