@@ -152,7 +152,7 @@ void setup() {
         Serial.println(F(")"));
     }
     
-    // configure LED for output
+    // 出力用の LED を構成する
     pinMode(LED_PIN, OUTPUT);
     WiFi.begin(ssid, password);
     Serial.print("WiFi.begin()");
