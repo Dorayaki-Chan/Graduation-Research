@@ -1,7 +1,7 @@
 ﻿  URGPDR5.cpp
-D:\Programming\SotsuKen\渡すプログラム\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp(106,24): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-D:\Programming\SotsuKen\渡すプログラム\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp(119,44): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-D:\Programming\SotsuKen\渡すプログラム\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp(191,15): warning C4244: 'return': 'WPARAM' から 'int' への変換です。データが失われる可能性があります。
-D:\Programming\SotsuKen\渡すプログラム\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp(568,13): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Programming\SotsuKen\source\main\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp(108,24): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+D:\Programming\SotsuKen\source\main\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp(121,44): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+D:\Programming\SotsuKen\source\main\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp(193,15): warning C4244: 'return': 'WPARAM' から 'int' への変換です。データが失われる可能性があります。
+D:\Programming\SotsuKen\source\main\urg_library\vs2017\cpp\URGPDR5\URGPDR5.cpp(570,13): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 Connection_information_me.obj : warning LNK4075: /EDITANDCONTINUE は /INCREMENTAL:NO の指定によって無視されます。
-  URGPDR5.vcxproj -> D:\Programming\SotsuKen\渡すプログラム\urg_library\vs2017\cpp\x64\Debug\URGPDR5.exe
+  URGPDR5.vcxproj -> D:\Programming\SotsuKen\source\main\urg_library\vs2017\cpp\x64\Debug\URGPDR5.exe
