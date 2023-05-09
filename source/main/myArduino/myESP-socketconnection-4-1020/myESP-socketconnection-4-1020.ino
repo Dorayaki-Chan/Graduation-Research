@@ -179,6 +179,8 @@ void loop() {
     float iDegreeRad = 0; 
     float iDisDegreeRad = 0; 
     //bool lightSwitch = 0;
+    /* 正面をセットする */
+    /* ボタン押したときのあれ */
     if(syomenSet==0){
         Serial.println("syomen set up");
         while(digitalRead(PUSHBUTTON)==0){
@@ -214,19 +216,21 @@ void loop() {
                 Serial.println("");
             }
 
-        //Serial.println("New Client."); 
-        //char sendDataChar[16];
-        //snprintf(sendDataChar,16,"S0000000000E");//Sで始まり,Eで終わる　エラー回避
-        //client.write(sendDataChar);  
-        //while (client.connected()) {//ボタンが1ならwifionでよし ||digitalRead(BUTTON)==0
+            //Serial.println("New Client."); 
+            //char sendDataChar[16];
+            //snprintf(sendDataChar,16,"S0000000000E");//Sで始まり,Eで終わる　エラー回避
+            //client.write(sendDataChar);  
+            //while (client.connected()) {//ボタンが1ならwifionでよし ||digitalRead(BUTTON)==0
             // 下準備部
             if (!dmpReady) return;
             int iAgoTime = millis();
             int iTime = iAgoTime;
             int  xWalk = 0;
             int  yWalk = 0;
-            int8_t walkCount=0;//歩数が保存されてる 64       
-            while(iTime-iAgoTime<1000){//1s毎に送信
+            int8_t walkCount=0;//歩数が保存されてる 64
+
+            //1s毎に送信       
+            while(iTime-iAgoTime<1000){
                 //10sループ
                 // FIFO からパケットを読み取る
                 if (mpu.dmpGetCurrentFIFOPacket(fifoBuffer)) {
@@ -242,11 +246,13 @@ void loop() {
                     iDegreeRad = ypr[0];
                     //Serial.print("ypr: ");
                     //Serial.println(iDegreeRad * 180/M_PI);
-
+                    
+                    /* 歩き始め検知*/
                     if(aaReal.z>1200){
                         walkFlag = 1; 
                         digitalWrite(5,HIGH);
                     }
+                    /*　着地を検知　*/
                     if(walkFlag==1&&aaReal.z<300){
                         //一歩分、
                         walkCount++;
