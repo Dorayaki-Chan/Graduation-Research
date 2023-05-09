@@ -30,8 +30,8 @@ espに開始信号と停止信号もつけないと
 
 MPU6050 mpu;
 
-#define INTERRUPT_PIN 2  // use pin 2 on Arduino Uno & most boards
-#define LED_PIN 5 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
+#define INTERRUPT_PIN 2  // Arduino Uno とほとんどのボードでピン 2 を使用
+#define LED_PIN 5 // (Arduino は 13, Teensy は 11, Teensy++ は 6)
 
 //#define BUTTON 15
 #define PUSHBUTTON 19
@@ -39,24 +39,24 @@ MPU6050 mpu;
 
 bool blinkState = false;
 
-// MPU control/status vars
-bool dmpReady = false;  // set true if DMP init was successful
-uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
-uint8_t devStatus;      // return status after each device operation (0 = success, !0 = error)
-uint16_t packetSize;    // expected DMP packet size (default is 42 bytes)
-uint16_t fifoCount;     // count of all bytes currently in FIFO
-uint8_t fifoBuffer[64]; // FIFO storage buffer
+// MPU 制御/ステータス変数
+bool dmpReady = false;  // DMP 初期化が成功した場合は true に設定
+uint8_t mpuIntStatus;   // MPU からの実際の割り込みステータス バイトを保持する
+uint8_t devStatus;      // 各デバイス操作後にステータスを返します (0 = 成功、!0 = エラー)
+uint16_t packetSize;    // 予想される DMP パケット サイズ (デフォルトは 42 バイト)
+uint16_t fifoCount;     // 現在 FIFO にある全バイト数
+uint8_t fifoBuffer[64]; // FIFO 格納バッファ
 
-// orientation/motion vars
-Quaternion q;           // [w, x, y, z]         quaternion container
-VectorInt16 aa;         // [x, y, z]            accel sensor measurements
-VectorInt16 aaReal;     // [x, y, z]            gravity-free accel sensor measurements
-VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
-VectorFloat gravity;    // [x, y, z]            gravity vector
-float euler[3];         // [psi, theta, phi]    Euler angle container
-float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+// 向き/モーション変数
+Quaternion q;           // [w, x, y, z]         四元数コンテナ
+VectorInt16 aa;         // [x, y, z]            加速度センサー測定
+VectorInt16 aaReal;     // [x, y, z]            加速度センサー測定
+VectorInt16 aaWorld;    // [x, y, z]            ワールド フレーム加速度センサー測定
+VectorFloat gravity;    // [x, y, z]            重力ベクトル
+float euler[3];         // [psi, theta, phi]    オイラー角コンテナ
+float ypr[3];           // [yaw, pitch, roll]   ヨー/ピッチ/ロール コンテナと重力ベクトル
 
-volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
+volatile bool mpuInterrupt = false;     // MPU 割り込みピンがハイになったかどうかを示します
 void dmpDataReady() {
     mpuInterrupt = true;
 }
@@ -80,14 +80,19 @@ WiFiServer server(5000);
 
 int strideLength = STRIDELENGTH;
 
+// -q:setuo()は何をしているの？
+// -a:MPU6050の初期化
 void setup() {
     pinMode(LED_PIN,OUTPUT);//LED
     //pinMode(BUTTON,INPUT);//B
     pinMode(PUSHBUTTON,INPUT);//PUSHB
     digitalWrite(5,HIGH);
+
+    // -q:何をしているの？
+    // -a:シリアル通信の初期化
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
         Wire.begin();
-        Wire.setClock(400000); // 400kHz I2C clock. Comment this line if having compilation difficulties
+        Wire.setClock(400000); // 400kHz I2C クロック。コンパイルに問題がある場合は、この行にコメントしてください
     #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
         Fastwire::setup(400, true);
     #endif
@@ -95,53 +100,53 @@ void setup() {
     Serial.begin(115200);
     delay(500);
     Serial.println();
-    // initialize device
+    // デバイスの初期化
     Serial.println(F("Initializing I2C devices..."));
     mpu.initialize();
     pinMode(INTERRUPT_PIN, INPUT);
 
-    // verify connection
+    // 接続を確認する
     Serial.println(F("Testing device connections..."));
     Serial.println(mpu.testConnection() ? F("MPU6050 connection successful") : F("MPU6050 connection failed"));
 
-    // load and configure the DMP
+    // DMP をロードして構成する
     Serial.println(F("Initializing DMP..."));
     devStatus = mpu.dmpInitialize();
 
-    // supply your own gyro offsets here, scaled for min sensitivity
+    // 独自のジャイロ オフセットをここに入力し、最小感度にスケーリングします
     mpu.setXGyroOffset(220);
     mpu.setYGyroOffset(76);
     mpu.setZGyroOffset(-85);
-    mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
+    mpu.setZAccelOffset(1788); // 私のテストチップの1688工場出荷時のデフォルト
 
-    // make sure it worked (returns 0 if so)
+    // 動作することを確認してください (動作している場合は 0 を返します)
     if (devStatus == 0) {
-        // Calibration Time: generate offsets and calibrate our MPU6050
+        // キャリブレーション時間: オフセットを生成し、MPU6050 をキャリブレーションします。
         mpu.CalibrateAccel(6);
         mpu.CalibrateGyro(6);
         mpu.PrintActiveOffsets();
-        // turn on the DMP, now that it's ready
+        // 準備が整ったので、DMP をオンにします。
         Serial.println(F("Enabling DMP..."));
         mpu.setDMPEnabled(true);
 
-        // enable Arduino interrupt detection
+        // Arduino 割り込み検出を有効にする
         Serial.print(F("Enabling interrupt detection (Arduino external interrupt "));
         Serial.print(digitalPinToInterrupt(INTERRUPT_PIN));
         Serial.println(F(")..."));
         attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
         mpuIntStatus = mpu.getIntStatus();
 
-        // set our DMP Ready flag so the main loop() function knows it's okay to use it
+        // DMP Ready フラグを設定して、メインの loop() 関数がそれを使用してもよいことを認識できるようにします。
         Serial.println(F("DMP ready! Waiting for first interrupt..."));
         dmpReady = true;
 
-        // get expected DMP packet size for later comparison
+        // 後で比較するために、予想される DMP パケット サイズを取得する
         packetSize = mpu.dmpGetFIFOPacketSize();
     } else {
-        // ERROR!
-        // 1 = initial memory load failed
-        // 2 = DMP configuration updates failed
-        // (if it's going to break, usually the code will be 1)
+        // エラー！
+        // 1 = 初期メモリロードに失敗しました
+        // 2 = DMP 構成の更新に失敗しました
+        // (壊れそうな場合、通常コードは 1 になります)
         Serial.print(F("DMP Initialization failed (code "));
         Serial.print(devStatus);
         Serial.println(F(")"));
@@ -167,6 +172,9 @@ void setup() {
     delay(500);
 }
 bool syomenSet=0;
+
+// -q:loop()は何をしているの？
+// -a:MPU6050からデータを取得し、クライアントからの接続を待つ
 void loop() {
     float iDegreeRad = 0; 
     float iDisDegreeRad = 0; 
@@ -187,6 +195,7 @@ void loop() {
         syomenSet = 1;
     }
     digitalWrite(5,LOW);
+
     WiFiClient client = server.available();
 
     if (client) {//||digitalRead(BUTTON)==0
