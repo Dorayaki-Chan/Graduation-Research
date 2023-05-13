@@ -69,7 +69,7 @@ namespace changeExcel
             // エクセルに書き込む
             new writeExcel(lrfOutput, walkOutput, folderPath, filePath);
 
-            return 0;
+            return 1;
         }
         private class writeExcel
         {
