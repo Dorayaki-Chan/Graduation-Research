@@ -59,9 +59,13 @@ namespace changeExcel
 
                     string[] parts = line.Split(':');
                     Console.WriteLine(line);
-                    Console.WriteLine("Part0", parts[0], "Part1",parts[1], "Part2",parts[2], "Part3", parts[3]);
+                    Console.WriteLine(parts.Length);
+                    for (int i = 0; i < parts.Length; i++)
+                    {
+                        Console.WriteLine($"Part{i}: {parts[i]}");
+                    }
                     int n = int.Parse(parts[1].Replace(" X", ""));
-                    int x = last[1] + int.Parse(parts[2].Replace(" ,Y ", ""))*10;
+                    int x = last[1] + (int.Parse(parts[2].Replace(" ,Y", ""))*10);
                     int y = last[2] + int.Parse(parts[3])*10;
 
                     // output配列に追加する

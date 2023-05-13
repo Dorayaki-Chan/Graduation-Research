@@ -10,3 +10,15 @@ C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\cha
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.exe
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.pdb
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.csproj.ResolveComReference.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\bin\Debug\changeExcel.exe.config
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\bin\Debug\changeExcel.exe
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\bin\Debug\changeExcel.pdb
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.csproj.AssemblyReference.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.csproj.SuggestedBindingRedirects.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.csproj.ResolveComReference.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.Form1.resources
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.Properties.Resources.resources
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.csproj.GenerateResource.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.csproj.CoreCompileInputs.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.exe
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.pdb
