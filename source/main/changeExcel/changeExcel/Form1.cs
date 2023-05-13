@@ -73,10 +73,26 @@ namespace changeExcel
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                foreach (string filePath in openFileDialog1.FileNames)
+                // 出力先を取得する
+                using (FolderBrowserDialog dialog = new FolderBrowserDialog())
                 {
-                    // ファイルパスを使った処理を行う
-                    int result = new Moulding().changeExcel(filePath);
+                    // ダイアログのタイトルを設定
+                    dialog.Description = "出力先フォルダーを選択してください";
+
+                    // ルートフォルダーを指定（デフォルトはDesktop）
+                    dialog.RootFolder = Environment.SpecialFolder.Desktop;
+
+                    // ダイアログを表示して、ユーザーが選択したフォルダーのパスを取得
+                    DialogResult result = dialog.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        string folderPath = dialog.SelectedPath;
+                        foreach (string filePath in openFileDialog1.FileNames)
+                        {
+                            // ファイルパスを使った処理を行う
+                            int ok = new Moulding().changeExcel(filePath, folderPath);
+                        }
+                    }
                 }
             }
         }
