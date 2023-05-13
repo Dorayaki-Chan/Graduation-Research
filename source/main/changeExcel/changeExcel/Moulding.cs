@@ -15,8 +15,6 @@ namespace changeExcel
         //textをエクセルに変換する関数
         public int changeExcel (string filePath, String folderPath)
         {
-            Console.WriteLine(folderPath);
-            Console.WriteLine(filePath);
             string text = File.ReadAllText(filePath);
 
             List<int[]> lrfOutput = new List<int[]>();
@@ -58,10 +56,8 @@ namespace changeExcel
                     }
 
                     string[] parts = line.Split(':');
-                    Console.WriteLine(line);
-                    Console.WriteLine("Part0", parts[0], "Part1",parts[1], "Part2",parts[2], "Part3", parts[3]);
                     int n = int.Parse(parts[1].Replace(" X", ""));
-                    int x = last[1] + int.Parse(parts[2].Replace(" ,Y ", ""))*10;
+                    int x = last[1] + (int.Parse(parts[2].Replace(" ,Y", ""))*10);
                     int y = last[2] + int.Parse(parts[3])*10;
 
                     // output配列に追加する
@@ -73,7 +69,7 @@ namespace changeExcel
             // エクセルに書き込む
             new writeExcel(lrfOutput, walkOutput, folderPath, filePath);
 
-            return 0;
+            return 1;
         }
         private class writeExcel
         {

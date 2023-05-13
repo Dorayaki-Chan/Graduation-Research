@@ -86,11 +86,24 @@ namespace changeExcel
                     DialogResult result = dialog.ShowDialog();
                     if (result == DialogResult.OK)
                     {
+
                         string folderPath = dialog.SelectedPath;
+                        int return_counter = 0;
                         foreach (string filePath in openFileDialog1.FileNames)
                         {
                             // ファイルパスを使った処理を行う
-                            int ok = new Moulding().changeExcel(filePath, folderPath);
+                            return_counter += new Moulding().changeExcel(filePath, folderPath);
+                        }
+                        if (return_counter == openFileDialog1.FileNames.Length)
+                        {
+                            string message = $"{openFileDialog1.FileNames.Length}件のログを\n\n{folderPath}\n\nにぶち込みました。";
+                            string title = "正常";
+                            MessageBox.Show(message, title);
+                        }
+                        else {
+                            string title = "エラー";
+                            string message = $"失敗しました。データが違うか、このアプリがおかしいです。ごめんっぴ🥺";
+                            MessageBox.Show(message, title);
                         }
                     }
                 }

@@ -9,3 +9,15 @@ C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\cha
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Release\changeExcel.csproj.CoreCompileInputs.cache
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Release\changeExcel.exe
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Release\changeExcel.pdb
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\bin\Release\changeExcel.exe.config
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\bin\Release\changeExcel.exe
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\bin\Release\changeExcel.pdb
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.csproj.AssemblyReference.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.csproj.SuggestedBindingRedirects.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.csproj.ResolveComReference.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.Form1.resources
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.Properties.Resources.resources
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.csproj.GenerateResource.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.csproj.CoreCompileInputs.cache
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.exe
+D:\Programming\SotsuKen\source\main\changeExcel\changeExcel\obj\Release\changeExcel.pdb
