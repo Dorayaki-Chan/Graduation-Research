@@ -276,7 +276,7 @@ void loop() {
                         Serial.print(" Xwalk: ");
                         Serial.print(strideLength * sin(iDegreeRad-iDisDegreeRad));
                         Serial.print(" Ywalk: ");
-                        Serial.println(strideLength * cos(iDegreeRad-iDisDegreeRad));                        
+                        Serial.println(strideLength * cos(iDegreeRad-iDisDegreeRad));
                     }
                 }
                 iTime = millis();
