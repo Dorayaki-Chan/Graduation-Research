@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using Microsoft.Office.Interop.Excel;
+
+using Excel = Microsoft.Office.Interop.Excel;
 
 
 namespace changeExcel
@@ -45,7 +46,7 @@ namespace changeExcel
                     lrfOutput.Add(lrf);
                 }
                 // walk
-                else if (line.StartsWith("walk")) {
+                else if (line.StartsWith("Walk")) {
                     // 最後の要素を取得
                     // -q:空の配列の場合どうなるの？
                     // -a:空の配列の場合はエラーになる
@@ -56,8 +57,9 @@ namespace changeExcel
                         last = walkOutput.Last();
                     }
 
-                    string[] del = {":"};
-                    string[] parts = line.Split(del, StringSplitOptions.None);
+                    string[] parts = line.Split(':');
+                    Console.WriteLine(line);
+                    Console.WriteLine("Part0", parts[0], "Part1",parts[1], "Part2",parts[2], "Part3", parts[3]);
                     int n = int.Parse(parts[1].Replace(" X", ""));
                     int x = last[1] + int.Parse(parts[2].Replace(" ,Y ", ""))*10;
                     int y = last[2] + int.Parse(parts[3])*10;
@@ -69,15 +71,55 @@ namespace changeExcel
             }
             
             // エクセルに書き込む
-            
+            new writeExcel(lrfOutput, walkOutput, folderPath, filePath);
 
             return 0;
         }
         private class writeExcel
         {
-            public writeExcel()
+            public writeExcel(List<int[]> lrfOutput, List<int[]> walkOutput, string outputFolder, string inputFilePath)
             {
-                using Excel = Microsoft.Office.Interop.Excel;
+                Excel.Application excelApp = new Excel.Application();
+
+                // Excelアプリケーションを表示する
+                excelApp.Visible = false;
+
+                // 新しいブックを作成する
+                Excel.Workbook workbook = excelApp.Workbooks.Add();
+
+                // シートを取得する
+                Excel.Worksheet lrfSheet = workbook.Sheets.Add();
+                Excel.Worksheet walkSheet = workbook.Sheets.Add();
+
+                // シート名を変更する
+                lrfSheet.Name = "LRF";
+                walkSheet.Name = "Walk";
+
+                for (int i = 0; i < lrfOutput.Count; i++) {
+                    // セルに値を書き込む
+                    lrfSheet.Cells[i+1, 1] = lrfOutput[i][0];
+                    lrfSheet.Cells[i+1, 2] = lrfOutput[i][1];
+                    lrfSheet.Cells[i+1, 3] = lrfOutput[i][2];
+                }
+                for (int i = 0; i < walkOutput.Count; i++)
+                {
+                    // セルに値を書き込む
+                    walkSheet.Cells[i+1, 1] = walkOutput[i][0];
+                    walkSheet.Cells[i+1, 2] = walkOutput[i][1];
+                    walkSheet.Cells[i+1, 3] = walkOutput[i][2];
+                }
+
+                // 元のファイル名を取得する
+                string fileName = Path.GetFileName(inputFilePath).Replace(".txt", "");
+
+                // ブックを保存する
+                workbook.SaveAs(outputFolder + "\\" + fileName + ".xlsx");
+
+                // ブックを閉じる
+                workbook.Close();
+
+                // Excelアプリケーションを終了する
+                excelApp.Quit();
             }
         }
     }

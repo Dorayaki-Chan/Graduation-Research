@@ -9,3 +9,4 @@ C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\cha
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.csproj.CoreCompileInputs.cache
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.exe
 C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.pdb
+C:\Users\Dorayaki-Chan\Documents\Graduation-Research\source\main\changeExcel\changeExcel\obj\Debug\changeExcel.csproj.ResolveComReference.cache
