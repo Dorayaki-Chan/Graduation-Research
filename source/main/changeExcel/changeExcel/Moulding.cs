@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Drawing;
+using System.Windows.Forms.DataVisualization.Charting;
 
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -68,7 +70,8 @@ namespace changeExcel
             
             // エクセルに書き込む
             new writeExcel(lrfOutput, walkOutput, folderPath, filePath);
-
+            drawChart(lrfOutput, "LRF", folderPath, filePath);
+            drawChart(walkOutput, "Walk", folderPath, filePath);
             return 1;
         }
         private class writeExcel
@@ -117,6 +120,87 @@ namespace changeExcel
                 // Excelアプリケーションを終了する
                 excelApp.Quit();
             }
+        }
+        private void drawChart(List<int[]> data, string type, string folderPath, string filePath) {
+
+            // サンプルデータの作成
+            int[] xData = new int[data.Count];
+            int[] yData = new int[data.Count];
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                xData[i] = data[i][1];
+                yData[i] = data[i][2];
+            }
+
+            // Chartオブジェクトの作成と設定
+            Chart chart = new Chart();
+            chart.ChartAreas.Add(new ChartArea("scatterArea"));
+            chart.Series.Add(new Series("scatterSeries"));
+            chart.Series["scatterSeries"].ChartType = SeriesChartType.Point;
+
+            // データの追加
+            for (int i = 0; i < xData.Length; i++)
+            {
+                chart.Series["scatterSeries"].Points.AddXY(xData[i], yData[i]);
+            }
+            // 軸の設定
+            chart.ChartAreas["scatterArea"].AxisX.Crossing = 0;
+            chart.ChartAreas["scatterArea"].AxisX.IsMarginVisible = true;
+            chart.ChartAreas["scatterArea"].AxisY.Crossing = 0;
+            chart.ChartAreas["scatterArea"].AxisY.IsMarginVisible = true;
+
+            // 目盛軸の線の設定
+            chart.ChartAreas["scatterArea"].AxisX.MajorGrid.LineColor = Color.LightGray;
+            chart.ChartAreas["scatterArea"].AxisX.MajorGrid.LineWidth = 1;
+            chart.ChartAreas["scatterArea"].AxisY.MajorGrid.LineColor = Color.LightGray;
+            chart.ChartAreas["scatterArea"].AxisY.MajorGrid.LineWidth = 1;
+
+            double minX = xData.Min();
+            double maxX = xData.Max();
+            double minY = yData.Min();
+            double maxY = yData.Max();
+            double interval = 2000;
+            double minXTick = Math.Floor(minX / interval) * interval;
+            double maxXTick = Math.Ceiling(maxX / interval) * interval;
+            double minYTick = Math.Floor(minY / interval) * interval;
+            double maxYTick = Math.Ceiling(maxY / interval) * interval;
+            chart.ChartAreas["scatterArea"].AxisX.Minimum = minXTick;
+            chart.ChartAreas["scatterArea"].AxisX.Maximum = maxXTick;
+            chart.ChartAreas["scatterArea"].AxisX.Interval = interval;
+            chart.ChartAreas["scatterArea"].AxisY.Minimum = minYTick;
+            chart.ChartAreas["scatterArea"].AxisY.Maximum = maxYTick;
+            chart.ChartAreas["scatterArea"].AxisY.Interval = interval;
+
+            // 解像度の設定
+            chart.Width = 1000;
+            chart.Height = 1000;
+
+
+            /*double minX = xData.Min();
+            double maxX = xData.Max();
+            double minY = yData.Min();
+            double maxY = yData.Max();
+            double interval = Math.Max((maxX - minX) / 5, (maxY - minY) / 5);
+            chart.ChartAreas["scatterArea"].AxisX.Interval = interval;
+            chart.ChartAreas["scatterArea"].AxisY.Interval = interval;*/
+
+            // チャートエリアのサイズを調整
+            //double aspectRatio = (double)chart.Width / chart.Height;
+            //chart.ChartAreas["scatterArea"].Position.Width = 100f;
+            //chart.ChartAreas["scatterArea"].Position.Height = (float)(100f / aspectRatio);
+
+            // チャートエリアの位置を調整
+            //chart.ChartAreas["scatterArea"].AxisX.IsMarginVisible = true;
+            //chart.ChartAreas["scatterArea"].AxisY.IsMarginVisible = true;
+
+
+            // 元のファイル名を取得する
+            string fileName = Path.GetFileName(filePath).Replace(".txt", "");
+
+            // グラフの保存
+            string imagePath = $"{folderPath}\\{type}_{fileName}.png";
+            chart.SaveImage(imagePath, ChartImageFormat.Png);
         }
     }
 }
