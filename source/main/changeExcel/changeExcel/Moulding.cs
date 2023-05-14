@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Drawing.Imaging;
 
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -129,8 +130,8 @@ namespace changeExcel
 
             for (int i = 0; i < data.Count; i++)
             {
-                xData[i] = data[i][1];
-                yData[i] = data[i][2];
+                xData[i] = data[i][2];
+                yData[i] = data[i][1];
             }
 
             // Chartオブジェクトの作成と設定
@@ -161,46 +162,43 @@ namespace changeExcel
             double minY = yData.Min();
             double maxY = yData.Max();
             double interval = 2000;
-            double minXTick = Math.Floor(minX / interval) * interval;
-            double maxXTick = Math.Ceiling(maxX / interval) * interval;
-            double minYTick = Math.Floor(minY / interval) * interval;
-            double maxYTick = Math.Ceiling(maxY / interval) * interval;
-            chart.ChartAreas["scatterArea"].AxisX.Minimum = minXTick;
-            chart.ChartAreas["scatterArea"].AxisX.Maximum = maxXTick;
+            double minTickX = Math.Floor(minX / interval) * interval;
+            double maxTickX = Math.Ceiling(maxX / interval) * interval;
+            double minTickY = Math.Floor(minY / interval) * interval;
+            double maxTickY = Math.Ceiling(maxY / interval) * interval;
+
+            // 方眼紙にするために大きい方に表示最大値を合わせる
+            double max = maxTickX >= maxTickY ? maxTickX : maxTickY;
+            double min = minTickX <= minTickY ? minTickX : minTickY;
+            // 目盛軸の設定
+            chart.ChartAreas["scatterArea"].AxisX.Minimum = min;
+            chart.ChartAreas["scatterArea"].AxisX.Maximum = max;
             chart.ChartAreas["scatterArea"].AxisX.Interval = interval;
-            chart.ChartAreas["scatterArea"].AxisY.Minimum = minYTick;
-            chart.ChartAreas["scatterArea"].AxisY.Maximum = maxYTick;
+            chart.ChartAreas["scatterArea"].AxisY.Minimum = min;
+            chart.ChartAreas["scatterArea"].AxisY.Maximum = max;
             chart.ChartAreas["scatterArea"].AxisY.Interval = interval;
 
             // 解像度の設定
-            chart.Width = 1000;
-            chart.Height = 1000;
-
-
-            /*double minX = xData.Min();
-            double maxX = xData.Max();
-            double minY = yData.Min();
-            double maxY = yData.Max();
-            double interval = Math.Max((maxX - minX) / 5, (maxY - minY) / 5);
-            chart.ChartAreas["scatterArea"].AxisX.Interval = interval;
-            chart.ChartAreas["scatterArea"].AxisY.Interval = interval;*/
-
-            // チャートエリアのサイズを調整
-            //double aspectRatio = (double)chart.Width / chart.Height;
-            //chart.ChartAreas["scatterArea"].Position.Width = 100f;
-            //chart.ChartAreas["scatterArea"].Position.Height = (float)(100f / aspectRatio);
-
-            // チャートエリアの位置を調整
-            //chart.ChartAreas["scatterArea"].AxisX.IsMarginVisible = true;
-            //chart.ChartAreas["scatterArea"].AxisY.IsMarginVisible = true;
-
+            chart.Width = 2000;
+            chart.Height = 2000;
 
             // 元のファイル名を取得する
             string fileName = Path.GetFileName(filePath).Replace(".txt", "");
 
             // グラフの保存
-            string imagePath = $"{folderPath}\\{type}_{fileName}.png";
-            chart.SaveImage(imagePath, ChartImageFormat.Png);
+            string imagePath = $"{folderPath}\\{type}_{fileName}";
+            chart.ChartAreas["scatterArea"].BackColor = Color.Transparent;
+            chart.SaveImage($"{imagePath}.jpeg", ChartImageFormat.Jpeg);
+
+            // Chartコントロールの描画をBitmapに変換
+            Bitmap bitmap = new Bitmap(chart.Width, chart.Height);
+            chart.DrawToBitmap(bitmap, new Rectangle(0, 0, chart.Width, chart.Height));
+
+            // Bitmapの背景を透明にする
+            bitmap.MakeTransparent(Color.White);
+
+            // BitmapをPNGファイルとして保存
+            bitmap.Save($"{imagePath}.png", ImageFormat.Png);
         }
     }
 }
