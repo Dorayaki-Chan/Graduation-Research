@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Drawing;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Drawing.Imaging;
 
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -68,7 +71,8 @@ namespace changeExcel
             
             // エクセルに書き込む
             new writeExcel(lrfOutput, walkOutput, folderPath, filePath);
-
+            drawChart(lrfOutput, "LRF", folderPath, filePath);
+            drawChart(walkOutput, "Walk", folderPath, filePath);
             return 1;
         }
         private class writeExcel
@@ -117,6 +121,84 @@ namespace changeExcel
                 // Excelアプリケーションを終了する
                 excelApp.Quit();
             }
+        }
+        private void drawChart(List<int[]> data, string type, string folderPath, string filePath) {
+
+            // サンプルデータの作成
+            int[] xData = new int[data.Count];
+            int[] yData = new int[data.Count];
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                xData[i] = data[i][2];
+                yData[i] = data[i][1];
+            }
+
+            // Chartオブジェクトの作成と設定
+            Chart chart = new Chart();
+            chart.ChartAreas.Add(new ChartArea("scatterArea"));
+            chart.Series.Add(new Series("scatterSeries"));
+            chart.Series["scatterSeries"].ChartType = SeriesChartType.Point;
+
+            // データの追加
+            for (int i = 0; i < xData.Length; i++)
+            {
+                chart.Series["scatterSeries"].Points.AddXY(xData[i], yData[i]);
+            }
+            // 軸の設定
+            chart.ChartAreas["scatterArea"].AxisX.Crossing = 0;
+            chart.ChartAreas["scatterArea"].AxisX.IsMarginVisible = true;
+            chart.ChartAreas["scatterArea"].AxisY.Crossing = 0;
+            chart.ChartAreas["scatterArea"].AxisY.IsMarginVisible = true;
+
+            // 目盛軸の線の設定
+            chart.ChartAreas["scatterArea"].AxisX.MajorGrid.LineColor = Color.LightGray;
+            chart.ChartAreas["scatterArea"].AxisX.MajorGrid.LineWidth = 1;
+            chart.ChartAreas["scatterArea"].AxisY.MajorGrid.LineColor = Color.LightGray;
+            chart.ChartAreas["scatterArea"].AxisY.MajorGrid.LineWidth = 1;
+
+            double minX = xData.Min();
+            double maxX = xData.Max();
+            double minY = yData.Min();
+            double maxY = yData.Max();
+            double interval = 2000;
+            double minTickX = Math.Floor(minX / interval) * interval;
+            double maxTickX = Math.Ceiling(maxX / interval) * interval;
+            double minTickY = Math.Floor(minY / interval) * interval;
+            double maxTickY = Math.Ceiling(maxY / interval) * interval;
+
+            // 方眼紙にするために大きい方に表示最大値を合わせる
+            double max = maxTickX >= maxTickY ? maxTickX : maxTickY;
+            double min = minTickX <= minTickY ? minTickX : minTickY;
+            // 目盛軸の設定
+            chart.ChartAreas["scatterArea"].AxisX.Minimum = min;
+            chart.ChartAreas["scatterArea"].AxisX.Maximum = max;
+            chart.ChartAreas["scatterArea"].AxisX.Interval = interval;
+            chart.ChartAreas["scatterArea"].AxisY.Minimum = min;
+            chart.ChartAreas["scatterArea"].AxisY.Maximum = max;
+            chart.ChartAreas["scatterArea"].AxisY.Interval = interval;
+
+            // 解像度の設定
+            chart.Width = 2000;
+            chart.Height = 2000;
+
+            // 元のファイル名を取得する
+            string fileName = Path.GetFileName(filePath).Replace(".txt", "");
+
+            // グラフの保存
+            string imagePath = $"{folderPath}\\{type}_{fileName}";
+            chart.ChartAreas["scatterArea"].BackColor = Color.Transparent;
+            chart.SaveImage($"{imagePath}.jpeg", ChartImageFormat.Jpeg);
+
+            // Chartコントロールの描画をBitmapに変換
+            Bitmap bitmap = new Bitmap(chart.Width, chart.Height);
+            chart.DrawToBitmap(bitmap, new Rectangle(0, 0, chart.Width, chart.Height));
+
+            // Bitmapの背景を透明にする
+            bitmap.MakeTransparent(Color.White);
+
+            // BitmapをPNGファイルとして保存
+            bitmap.Save($"{imagePath}.png", ImageFormat.Png);
         }
     }
 }
