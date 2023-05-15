@@ -38,7 +38,7 @@ TODO:
 
 #define DEFAULT_BUFLEN 2
 #define DEFAULT_PORT "5000"
-#define ESPIPADDR  "10.84.233.91"//"192.168.11.18"//192.168.208.233, 
+#define ESPIPADDR  "10.84.233.117"//"192.168.11.18"//192.168.208.233, 
 #define BUTTON_ID1 0
 #define FRAMESIZE  500
 #define STARTX 250 //歩行開始地点 250がLRFがある場所
@@ -210,7 +210,7 @@ int myTXTout() {
     HANDLE hFile;
     DWORD dwWriteSize;
 
-    hFile = CreateFile(TEXT("test1115-1.txt"), GENERIC_READ | GENERIC_WRITE, 0, NULL,
+    hFile = CreateFile(TEXT("Matsumoto-20230515-chokusen.txt"), GENERIC_READ | GENERIC_WRITE, 0, NULL,
         OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hFile == INVALID_HANDLE_VALUE) {
         MessageBox(NULL, TEXT("ファイルが開けません"), NULL, MB_OK);
@@ -242,7 +242,7 @@ int MyPaint(HWND hwnd) {//描画は全部ここ
     HANDLE hFile;
     DWORD dwWriteSize;
 
-    hFile = CreateFile(TEXT("shiken1115-1.txt"), GENERIC_READ | GENERIC_WRITE, 0, NULL,
+    hFile = CreateFile(TEXT("Matsumoto-20230515-corner-2.txt"), GENERIC_READ | GENERIC_WRITE, 0, NULL,
         OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hFile == INVALID_HANDLE_VALUE) {
         //MessageBox(NULL, TEXT("ファイルが開けません"), NULL, MB_OK);
