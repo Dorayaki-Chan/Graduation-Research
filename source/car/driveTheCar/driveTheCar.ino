@@ -2,9 +2,9 @@ int MOTER1_EN = 9;
 int MOTER1_IN1 = 8;
 int MOTER1_IN2 = 11;
 
-int MOTER2_EN = 10;
-int MOTER2_IN1 = 12;
-int MOTER2_IN2 = 13;
+const int MOTER2_EN = 10;
+const int MOTER2_IN1 = 12;
+const int MOTER2_IN2 = 13;
 
 
 void setup() {
