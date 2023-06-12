@@ -15,7 +15,7 @@ TODO:
 #include <windows.h>
 
 #include "Urg_driver.h"
-#include <C:\Users\tombow\Documents\GitHub\ARILab\urg_library\samples\cpp\Connection_information_me.h>
+#include <D:\Programming\SotsuKen\source\main\urg_library\samples\cpp\Connection_information_me.h>
 #include "math_utilities.h"
 #include <iostream>
 #include <stdio.h>
