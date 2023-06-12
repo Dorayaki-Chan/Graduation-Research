@@ -1,6 +1,6 @@
-int MOTER1_EN = 9;
-int MOTER1_IN1 = 8;
-int MOTER1_IN2 = 11;
+const int MOTER1_EN = 9;
+const int MOTER1_IN1 = 8;
+const int MOTER1_IN2 = 11;
 
 const int MOTER2_EN = 10;
 const int MOTER2_IN1 = 12;
