@@ -3,7 +3,11 @@ const int RightBWD = 6;
 const int LeftFWD = 10;
 const int LeftBWD = 11;
 
+byte val = 0;
+
 byte speed = 255;
+
+int delayTime = 1;
 
 void setup() {
   // put your setup code here, to run once:
@@ -11,26 +15,35 @@ void setup() {
   pinMode(RightBWD, OUTPUT);
   pinMode(LeftFWD, OUTPUT);
   pinMode(LeftBWD, OUTPUT);
+
+  Serial.begin(9600);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  driveForward();
-  delay(1000);
-  stop();
-  delay(1000);
-  driveBackward();
-  delay(1000);
-  stop();
-  delay(1000);
-  turnLeft();
-  delay(1000);
-  stop();
-  delay(1000);
-  turnRight();
-  delay(1000);
-  stop();
-  delay(1000);
+  if (Serial.available() > 0) {
+    val = Serial.read();
+    if(val == 'f') {
+      driveForward();
+      delay(delayTime);
+    }
+    else if(val == 'b') {
+      driveBackward();
+      delay(delayTime);
+    }
+    else if(val == 'l') {
+      turnLeft();
+      delay(delayTime);
+    }
+    else if(val == 'r') {
+      turnRight();
+      delay(delayTime);
+    }
+  }
+  else {
+    stop();
+    delay(delayTime);
+  }
 }
 
 void driveForward() {
