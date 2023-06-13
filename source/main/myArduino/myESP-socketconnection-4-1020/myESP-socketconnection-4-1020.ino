@@ -1,4 +1,4 @@
-/*
+      /*
 内容:
 	myESP-socketconnnection-2+myMPU6050の合体
 情報:2022/10/5  N.Hirota
