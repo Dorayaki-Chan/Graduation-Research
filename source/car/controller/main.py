@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 from tkinter import font
 import serial
 
-ser = serial.Serial('COM5', 9600)
+ser = serial.Serial('COM7', 9600)
 
 def move_forward():
     print("前進")

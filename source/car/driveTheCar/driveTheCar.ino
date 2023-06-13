@@ -1,51 +1,106 @@
-const int MOTER1_EN = 9;
-const int MOTER1_IN1 = 8;
-const int MOTER1_IN2 = 11;
+const int MOTER_RIGHT_EN = 9;
+const int MOTER_RIGHT_FWD = 8;
+const int MOTER_RIGHT_BWD = 11;
 
-const int MOTER2_EN = 10;
-const int MOTER2_IN1 = 12;
-const int MOTER2_IN2 = 13;
+const int MOTER_LEFT_EN = 10;
+const int MOTER_LEFT_FWD = 12;
+const int MOTER_LEFT_BWD = 13;
 
+byte val = 0;
+
+byte speed = 255;
+
+int delayTime = 1;
 
 void setup() {
   // put your setup code here, to run once:
   // モーター右
-  pinMode(MOTER1_EN, OUTPUT); 
-  pinMode(MOTER1_IN1, OUTPUT);
-  pinMode(MOTER1_IN2, OUTPUT);
+  pinMode(MOTER_RIGHT_EN, OUTPUT); 
+  pinMode(MOTER_RIGHT_FWD, OUTPUT);
+  pinMode(MOTER_RIGHT_BWD, OUTPUT);
 
   // モーター左
-  pinMode(MOTER2_EN, OUTPUT);
-  pinMode(MOTER2_IN1, OUTPUT);
-  pinMode(MOTER2_IN2, OUTPUT);
+  pinMode(MOTER_LEFT_EN, OUTPUT);
+  pinMode(MOTER_LEFT_FWD, OUTPUT);
+  pinMode(MOTER_LEFT_BWD, OUTPUT);
+
+  Serial.begin(9600);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  forward();
-  delay(1000);
-  back();
-  delay(1000);
+  if (Serial.available() > 0) {
+    val = Serial.read();
+    if(val == 'f') {
+      forward();
+    }
+    else if(val == 'b') {
+      back();
+    }
+    else if(val == 'l') {
+      left();
+    }
+    else if(val == 'r') {
+      right();
+    }
+  }
+  else {
+    stop();
+  }
+  delay(delayTime);
 }
 
 // 前進
 void forward(){
-  digitalWrite(MOTER1_IN1, HIGH);
-  digitalWrite(MOTER1_IN2, LOW);
-  analogWrite(MOTER1_EN, 255);
+  digitalWrite(MOTER_RIGHT_FWD, HIGH);
+  digitalWrite(MOTER_RIGHT_BWD, LOW);
+  analogWrite(MOTER_RIGHT_EN, speed);
 
-  digitalWrite(MOTER2_IN1, HIGH);
-  digitalWrite(MOTER2_IN2, LOW);
-  analogWrite(MOTER2_EN, 255);
+  digitalWrite(MOTER_LEFT_FWD, HIGH);
+  digitalWrite(MOTER_LEFT_BWD, LOW);
+  analogWrite(MOTER_LEFT_EN, speed);
 }
 
 // 後退
 void back(){
-  digitalWrite(MOTER1_IN1, LOW);
-  digitalWrite(MOTER1_IN2, HIGH);
-  analogWrite(MOTER1_EN, 255);
+  digitalWrite(MOTER_RIGHT_FWD, LOW);
+  digitalWrite(MOTER_RIGHT_BWD, HIGH);
+  analogWrite(MOTER_RIGHT_EN, speed);
 
-  digitalWrite(MOTER2_IN1, LOW);
-  digitalWrite(MOTER2_IN2, HIGH);
-  analogWrite(MOTER2_EN, 255);
+  digitalWrite(MOTER_LEFT_FWD, LOW);
+  digitalWrite(MOTER_LEFT_BWD, HIGH);
+  analogWrite(MOTER_LEFT_EN, speed);
+}
+
+// 左回転
+void left(){
+  digitalWrite(MOTER_RIGHT_FWD, HIGH);
+  digitalWrite(MOTER_RIGHT_BWD, LOW);
+  analogWrite(MOTER_RIGHT_EN, speed);
+
+  digitalWrite(MOTER_LEFT_FWD, LOW);
+  digitalWrite(MOTER_LEFT_BWD, HIGH);
+  analogWrite(MOTER_LEFT_EN, speed);
+}
+
+// 右回転
+void right(){
+  digitalWrite(MOTER_RIGHT_FWD, LOW);
+  digitalWrite(MOTER_RIGHT_BWD, HIGH);
+  analogWrite(MOTER_RIGHT_EN, speed);
+
+  digitalWrite(MOTER_LEFT_FWD, HIGH);
+  digitalWrite(MOTER_LEFT_BWD, LOW);
+  analogWrite(MOTER_LEFT_EN, speed);
+}
+
+// 停止
+void stop(){
+  digitalWrite(MOTER_RIGHT_FWD, HIGH);
+  digitalWrite(MOTER_RIGHT_BWD, HIGH);
+  analogWrite(MOTER_RIGHT_EN, speed);
+
+  digitalWrite(MOTER_LEFT_FWD, HIGH);
+  digitalWrite(MOTER_LEFT_BWD, HIGH);
+  analogWrite(MOTER_LEFT_EN, speed);
 }
