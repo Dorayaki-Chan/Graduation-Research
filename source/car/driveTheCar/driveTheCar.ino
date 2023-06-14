@@ -43,11 +43,14 @@ void loop() {
     else if(val == 'r') {
       right();
     }
+    else if(val == 's'){
+      mstop();
+    }
+    delay(delayTime);
   }
   else {
-    stop();
+    //mstop();
   }
-  delay(delayTime);
 }
 
 // 前進
@@ -95,7 +98,7 @@ void right(){
 }
 
 // 停止
-void stop(){
+void mstop(){
   digitalWrite(MOTER_RIGHT_FWD, HIGH);
   digitalWrite(MOTER_RIGHT_BWD, HIGH);
   analogWrite(MOTER_RIGHT_EN, speed);
