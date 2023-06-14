@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 from tkinter import font
 import serial
 
-ser = serial.Serial('COM7', 9600)
+ser = serial.Serial('/dev/ttyACM0', 9600)
 
 def move_forward():
     print("前進")
@@ -20,6 +20,10 @@ def turn_right():
 def turn_left():
     print("左回転")
     ser.write(bytes('l', 'utf-8'))
+
+def move_stop():
+    print("停止")
+    ser.write(bytes('s', 'utf-8'))
 
 window = tk.Tk()
 window.title("リモコン")
@@ -45,5 +49,8 @@ right_button.grid(row=1, column=2)
 
 left_button = tk.Button(window, text="取舵", command=turn_left, width=button_width, height=button_height, repeatdelay=1, repeatinterval=1, font=button_font)
 left_button.grid(row=1, column=0)
+
+stop_button = tk.Button(window, text="停止", command=move_stop, width=button_width, height=button_height, repeatdelay=1, repeatinterval=1, font=button_font)
+stop_button.grid(row=1, column=1)
 
 window.mainloop()
