@@ -82,8 +82,7 @@ void loop() {
                 }else{
                         int nowTime=millis();
                         if(nowTime-lastRecvTime>3000){//前回の受信から3sたったら停止
-                                analogWrite(PWMR,0);
-                                analogWrite(PWML,0);
+                                mstop();
                         }
                 }
         }
@@ -109,4 +108,14 @@ void backword(char rf){
         digitalWrite(MOTER_LEFT_FWD, LOW);
         digitalWrite(MOTER_LEFT_BWD, HIGH);
     }
+}
+
+void mstop(){
+    digitalWrite(MOTER_RIGHT_FWD, HIGH);
+    digitalWrite(MOTER_RIGHT_BWD, HIGH);
+    analogWrite(MOTER_RIGHT_EN, 255);
+
+    digitalWrite(MOTER_LEFT_FWD, HIGH);
+    digitalWrite(MOTER_LEFT_BWD, HIGH);
+    analogWrite(MOTER_LEFT_EN, 255);
 }
