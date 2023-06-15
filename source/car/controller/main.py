@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 from tkinter import font
 import serial
 
-ser = serial.Serial('/dev/ttyACM0', 9600)
+ser = serial.Serial('COM5', 9600)
 
 f_speed = 254
 b_speed = 0
@@ -11,42 +11,27 @@ b_speed = 0
 def move_forward():
     print("前進")
     # ser.write(bytes('f', 'utf-8'))
-    ser.write(255)
-    ser.write(f_speed)
-    ser.write(f_speed)
-    ser.write(255)
+    ser.write(bytes([255, f_speed,  f_speed, 255]))
 
 def move_backward():
     print("後進")
     # ser.write(bytes('b', 'utf-8'))
-    ser.write(255)
-    ser.write(b_speed)
-    ser.write(b_speed)
-    ser.write(255)
+    ser.write(bytes([255, b_speed,  b_speed, 255]))
 
 def turn_right():
     print("右回転")
     # ser.write(bytes('r', 'utf-8'))
-    ser.write(255)
-    ser.write(b_speed)
-    ser.write(f_speed)
-    ser.write(255)
+    ser.write(bytes([255, b_speed, f_speed, 255]))
 
 def turn_left():
     print("左回転")
     # ser.write(bytes('l', 'utf-8'))
-    ser.write(255)
-    ser.write(f_speed)
-    ser.write(b_speed)
-    ser.write(255)
+    ser.write(bytes([255, f_speed,  b_speed, 255]))
 
 def move_stop():
     print("停止")
     # ser.write(bytes('s', 'utf-8'))
-    ser.write(255)
-    ser.write(127)
-    ser.write(127)
-    ser.write(255)
+    ser.write(bytes([255, 127,  127, 255]))
 
 window = tk.Tk()
 window.title("リモコン")
