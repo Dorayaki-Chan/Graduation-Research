@@ -61,15 +61,17 @@ void loop() {
                                 if(incomingByte == 255){//正しい末尾文字ですのでモーターを回します
                                         lastRecvTime=millis();
                                         // 右
-                                        if(motorSig[0]>127)
+                                        if(motorSig[0]>127){
                                                 forword('r');
+                                        }
                                         else{
                                                 backword('r');
                                         }
                                         analogWrite(MOTER_RIGHT_EN, abs(motorSig[0]-127)*2);
                                         // 左
-                                        if(motorSig[1]>127)
+                                        if(motorSig[1]>127){
                                                 forword('l');
+                                        }
                                         else{
                                                 backword('l');
                                         }
