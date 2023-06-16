@@ -3,6 +3,7 @@ import tkinter.ttk as ttk
 from tkinter import font
 import serial
 
+"""
 ser = serial.Serial('COM5', 9600)
 
 f_speed = 254
@@ -62,3 +63,23 @@ stop_button = tk.Button(window, text="停止", command=move_stop, width=button_w
 stop_button.grid(row=1, column=1)
 
 window.mainloop()
+"""
+
+class Application(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.pack()
+
+        master.geometry("960x1080")
+        master.title("あすか制御盤")
+        master.configure(bg="gray")
+
+
+def main():
+    win = tk.Tk()
+    app = Application(master=win)
+    app.mainloop()
+
+
+if __name__ == "__main__":
+    main()
