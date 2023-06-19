@@ -70,7 +70,8 @@ class Application(tk.Frame):
         super().__init__(master)
         self.pack()
 
-        master.geometry("960x1080")
+        # master.geometry("960x1080")
+        master.geometry("1920x1080")
         master.title("あすか制御盤")
         master.configure(bg="gray")
 
