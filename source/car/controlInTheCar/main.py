@@ -83,6 +83,7 @@ class ControlTheCar:
                 x, y = self.__motion()
                 self.drive.turn_right()
                 self.__update_dx(x)
+                print(self.__xToAngle(self.x))
             self.drive.move_stop()
         elif angle > 0:
             while angle > self.__xToAngle(self.x):
@@ -90,6 +91,7 @@ class ControlTheCar:
                 self.__motion()
                 self.drive.turn_left()
                 self.__update_dx(x)
+                print(self.__xToAngle(self.x))
             self.drive.move_stop()
         else:
             pass
@@ -100,6 +102,7 @@ class ControlTheCar:
             x, y = self.__motion()
             self.drive.move_forward()
             self.__update_txty(y)
+            print(self.y * OPTICAL_KEISUU)
         self.drive.move_stop()
     
     # 経過時間を秒で返す
