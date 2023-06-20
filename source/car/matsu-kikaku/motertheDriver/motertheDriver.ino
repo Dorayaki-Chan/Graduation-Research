@@ -12,12 +12,12 @@ TODO:
 
 */
 const int MOTER_RIGHT_EN = 9;
-const int MOTER_RIGHT_FWD = 11;
-const int MOTER_RIGHT_BWD = 8;
+const int MOTER_RIGHT_FWD = 8;
+const int MOTER_RIGHT_BWD = 11;
 
 const int MOTER_LEFT_EN = 10;
-const int MOTER_LEFT_FWD = 13;
-const int MOTER_LEFT_BWD = 12;
+const int MOTER_LEFT_FWD = 12;
+const int MOTER_LEFT_BWD = 13;
 
 void setup() {
         // モーター右
