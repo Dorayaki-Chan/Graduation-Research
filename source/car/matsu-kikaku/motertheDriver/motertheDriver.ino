@@ -111,11 +111,11 @@ void backword(char rf){
 }
 
 void mstop(){
-        digitalWrite(MOTER_RIGHT_FWD, HIGH);
-        digitalWrite(MOTER_RIGHT_BWD, HIGH);
+        digitalWrite(MOTER_RIGHT_FWD, LOW);
+        digitalWrite(MOTER_RIGHT_BWD, LOW);
         analogWrite(MOTER_RIGHT_EN, 255);
 
-        digitalWrite(MOTER_LEFT_FWD, HIGH);
-        digitalWrite(MOTER_LEFT_BWD, HIGH);
+        digitalWrite(MOTER_LEFT_FWD, LOW);
+        digitalWrite(MOTER_LEFT_BWD, LOW);
         analogWrite(MOTER_LEFT_EN, 255);
 }
