@@ -21,3 +21,5 @@ def howDiffRotation(rotation):
 
 print(howRotation(-1, -1))
 print(howDiffRotation(howRotation(-1, -1)))
+
+print(-now_rotation)
