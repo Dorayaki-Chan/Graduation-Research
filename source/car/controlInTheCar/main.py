@@ -24,27 +24,27 @@ class DriveTheCar:
         self.bwd = 34
 
     def move_forward(self):
-        print("前進")
+        # print("前進")
         # ser.write(bytes('f', 'utf-8'))
         self.ser.write(bytes([255, self.fwd,  self.fwd, 255]))
 
     def move_backward(self):
-        print("後進")
+        # print("後進")
         # ser.write(bytes('b', 'utf-8'))
         self.ser.write(bytes([255, self.bwd, self.bwd, 255]))
 
     def turn_right(self):
-        print("右回転")
+        # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
         self.ser.write(bytes([255, self.fwd, self.bwd, 255]))
 
     def turn_left(self):
-        print("左回転")
+        # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
         self.ser.write(bytes([255, self.bwd,  self.fwd, 255]))
 
     def move_stop(self):
-        print("停止")
+        # print("停止")
         # ser.write(bytes('s', 'utf-8'))
         self.ser.write(bytes([255, 127,  127, 255]))
 
@@ -61,7 +61,7 @@ class ControlTheCar:
         self.y = 0
 
         # 永続的に円周を保存するための変数
-        self.dx = 0
+        self.dx = 2 * OPTICAL_HANKEI * math.pi * 1 / 4
 
         self.speed = 0
 
@@ -83,7 +83,7 @@ class ControlTheCar:
                 x, y = self.__motion()
                 self.drive.turn_right()
                 self.__update_dx(x)
-                print(self.__xToAngle(self.x))
+                #print(self.__xToAngle(self.x))
             self.drive.move_stop()
         elif angle > 0:
             while angle > self.__xToAngle(self.x):
@@ -91,7 +91,7 @@ class ControlTheCar:
                 self.__motion()
                 self.drive.turn_left()
                 self.__update_dx(x)
-                print(self.__xToAngle(self.x))
+                #print(self.__xToAngle(self.x))
             self.drive.move_stop()
         else:
             pass
@@ -102,8 +102,9 @@ class ControlTheCar:
             x, y = self.__motion()
             self.drive.move_forward()
             self.__update_txty(y)
-            print(self.y * OPTICAL_KEISUU)
+            # print(self.y * OPTICAL_KEISUU)
         self.drive.move_stop()
+        print(self.tx * OPTICAL_KEISUU, self.ty * OPTICAL_KEISUU, self.__xToAngle(self.dx))
     
     # 経過時間を秒で返す
     def __get_elapsed_time(self):
@@ -166,15 +167,15 @@ class ControlTheCar:
         return  angle
 
 
-shiken = DriveTheCar()
-for i in range(3):
-    shiken.move_forward()
-    time.sleep(1)
+#shiken = DriveTheCar()
+#for i in range(3):
+#    shiken.move_forward()
+#    time.sleep(1)
 
 try:
     control = ControlTheCar()
     control.goto(500, 500)
-
+    control.goto(500, 1000)
 except KeyboardInterrupt:
     pass
 
