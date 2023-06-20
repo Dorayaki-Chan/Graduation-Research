@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 from tkinter import font
 import serial
 
-"""
+
 ser = serial.Serial('COM5', 9600)
 
 f_speed = 254
@@ -84,3 +84,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"""
