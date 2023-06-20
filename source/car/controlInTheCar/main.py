@@ -20,8 +20,8 @@ SensorClass = PMW3901
 class DriveTheCar:
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 34
-        self.bwd = 220
+        self.fwd = 220
+        self.bwd = 34
 
     def move_forward(self):
         print("前進")
@@ -108,7 +108,7 @@ class ControlTheCar:
         
     def __motion(self):
         try:
-            x, y = flo.get_motion()
+            x, y = self.flo.get_motion()
             self.x += x
             self.y += y 
             time.sleep(0.01)
