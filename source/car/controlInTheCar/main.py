@@ -14,16 +14,14 @@ ENSHU = 2 * OPTICAL_HANKEI * math.pi
 # Pick the right class for the specified breakout
 SensorClass = PMW3901 
 
-flo = SensorClass(spi_port=0, spi_cs_gpio=BG_CS_FRONT_BCM)
-flo.set_rotation(0)     # Rotation of sensor in degrees
-                        # choices=[0, 90, 180, 270]
+
 
 # ロボットの操作を行うクラス
 class DriveTheCar:
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 0
-        self.bwd = 254
+        self.fwd = 34
+        self.bwd = 220
 
     def move_forward(self):
         print("前進")
@@ -66,6 +64,11 @@ class ControlTheCar:
         self.dx = 0
 
         self.speed = 0
+
+        # センサーをセットアップ
+        self.flo = SensorClass(spi_port=0, spi_cs_gpio=BG_CS_FRONT_BCM)
+        self.flo.set_rotation(0)     # Rotation of sensor in degrees
+                                # choices=[0, 90, 180, 270]
 
         # 制御クラスをインスタンス化
         self.drive = DriveTheCar()
@@ -111,7 +114,7 @@ class ControlTheCar:
             time.sleep(0.01)
             return x, y
         except RuntimeError:
-            pass
+            return 0, 0
 
     # ロボットの座標/角度を更新する
     def __update_txty(self, y):
@@ -128,8 +131,8 @@ class ControlTheCar:
     
     # 何度回れば目標座標に向くかを計算する(+/-(0~180))
     def __howManyTimesDoIHaveToTurn(self, x, y):
-        dif_x = x - self.tx
-        dif_y = y - self.ty
+        dif_x = x - self.tx * OPTICAL_KEISUU
+        dif_y = y - self.ty * OPTICAL_KEISUU
 
         dif_rotation = math.degrees(math.atan2(dif_y, dif_x)) - self.__xToAngle(self.dx)
         
@@ -140,15 +143,17 @@ class ControlTheCar:
         return dif_rotation
 
     def __howManyMove(self, x, y):
-        dif_x = x - self.tx
-        dif_y = y - self.ty
+        dif_x = x - self.tx * OPTICAL_KEISUU
+        dif_y = y - self.ty * OPTICAL_KEISUU
 
         return math.sqrt(dif_x ** 2 + dif_y ** 2)
     
     def goto(self, x, y):
         angle = self.__howManyTimesDoIHaveToTurn(x, y)
+        print("曲がるよ!" + str(angle))
         self.__turn(angle)
         distance = self.__howManyMove(x, y)
+        print("行くよ" + str(distance))
         self.__move(distance)
 
 
@@ -157,6 +162,11 @@ class ControlTheCar:
         angle = (abs(x) * OPTICAL_KEISUU * 360) / (2 * math.pi * OPTICAL_HANKEI)
         return  angle
 
+
+shiken = DriveTheCar()
+for i in range(3):
+    shiken.move_forward()
+    time.sleep(1)
 
 try:
     control = ControlTheCar()
