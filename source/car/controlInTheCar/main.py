@@ -20,8 +20,8 @@ SensorClass = PMW3901
 class DriveTheCar:
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 220
-        self.bwd = 34
+        self.fwd = 254 #220
+        self.bwd = 0 #34
 
     def move_forward(self):
         # print("前進")
@@ -144,7 +144,8 @@ class ControlTheCar:
         elif self.dx < (-ENSHU):
             self.dx += ENSHU
         '''
-        self.aangle += self.__xToAngle(self.tx)
+        angle = self.__xToAngle(x) 
+        self.aangle += angle if x < 0 else -angle
         print("絶対角度" + str(self.aangle))
     
     # 何度回れば目標座標に向くかを計算する(+/-(0~180))
@@ -178,9 +179,7 @@ class ControlTheCar:
 
 try:
     control = ControlTheCar()
-    control.goto(-500, 500)
-    control.goto(500, 1000)
-    control.goto(0, 0)
+    control.goto(-100, 0)
 except KeyboardInterrupt:
     pass
 
