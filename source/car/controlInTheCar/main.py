@@ -104,6 +104,7 @@ class ControlTheCar:
             print("右"+str(self.tx))
         else:
             pass
+        print("絶対角度" + str(self.aangle)+"絶対座標"+str(self.ax)+" "+str(self.ay))
 
     def __move(self, distance):
         self.ty = 0
@@ -146,7 +147,6 @@ class ControlTheCar:
         '''
         angle = self.__xToAngle(x) 
         self.aangle += angle if x < 0 else -angle
-        print("絶対角度" + str(self.aangle))
     
     # 何度回れば目標座標に向くかを計算する(+/-(0~180))
     def __howManyTimesDoIHaveToTurn(self, x, y):
@@ -179,7 +179,9 @@ class ControlTheCar:
 
 try:
     control = ControlTheCar()
-    control.goto(-100, 0)
+    control.goto(-500, 500)
+    control.goto(500, 1000)
+    control.goto(0, 0)
 except KeyboardInterrupt:
     pass
 
