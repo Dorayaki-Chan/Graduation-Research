@@ -91,6 +91,9 @@ class ControlTheCar:
         print("絶対角度" + str(self.aangle)+"絶対座標"+str(self.ax)+" "+str(self.ay))
         self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "完了")
     
+    def get180(self):
+        self.__turn(180)
+    
     # ロボットの回転制御
     def __turn(self, angle):
         # 回転開始前に初期化
@@ -231,7 +234,7 @@ class Logs:
             for log in self.pointlogs:
                 f.write(str(log) + '\n')
 
-if __name__ == "__main__":
+def main():
     try:
         control = ControlTheCar()
         control.goto(-500, 500)
@@ -239,5 +242,7 @@ if __name__ == "__main__":
         control.goto(0, 0)
     except KeyboardInterrupt:
         pass
+    print("終了")
 
-print("終了")
+if __name__ == "__main__":
+    main()
