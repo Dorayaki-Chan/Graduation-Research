@@ -90,13 +90,13 @@ class ControlTheCar:
         self.tx = 0
         if angle < 0:
             while (-(angle)) > self.__xToAngle(self.tx):
-                self.drive.turn_right()
+                self.drive.turn_left()
                 x, y = self.__motion()
                 self.__update_dx(x)
             self.drive.move_stop()
         elif angle > 0:
             while angle > self.__xToAngle(self.tx):
-                self.drive.turn_left()
+                self.drive.turn_right()
                 x, y = self.__motion()
                 self.__update_dx(x)
             self.drive.move_stop()
