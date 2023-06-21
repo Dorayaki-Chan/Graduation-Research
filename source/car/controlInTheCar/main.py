@@ -189,8 +189,8 @@ class ControlTheCar:
 
     # 進む距離を計算する
     def __howManyMove(self, x, y):
-        dif_x = x - self.tx
-        dif_y = y - self.ty
+        dif_x = x - self.ax
+        dif_y = y - self.ay
         return math.sqrt(dif_x ** 2 + dif_y ** 2)
 
     # 円周(X座標)から角度を計算する(戻り値は必ず+)
