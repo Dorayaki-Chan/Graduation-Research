@@ -67,7 +67,7 @@ class ControlTheCar:
 
         # センサーをセットアップ
         self.flo = SensorClass(spi_port=0, spi_cs_gpio=BG_CS_FRONT_BCM)
-        self.flo.set_rotation(0)    # Rotation of sensor in degrees
+        self.flo.set_rotation(180)    # Rotation of sensor in degrees
                                     # choices=[0, 90, 180, 270]
 
         # 制御クラスをインスタンス化
