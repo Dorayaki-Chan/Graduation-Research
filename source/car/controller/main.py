@@ -4,7 +4,8 @@ from tkinter import font
 import serial
 
 
-ser = serial.Serial('COM7', 9600)
+ser = serial.Serial('/dev/ttyACM0', 9600)
+
 
 f_speed = 254
 b_speed = 0

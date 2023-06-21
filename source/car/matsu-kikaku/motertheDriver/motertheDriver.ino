@@ -63,6 +63,7 @@ void loop() {
                                         // 左
                                         if(motorSig[0]>127)
                                                 backword('l');
+
                                         else{
                                                 forword('l');
                                         }
@@ -115,7 +116,9 @@ void mstop(){
         digitalWrite(MOTER_RIGHT_BWD, LOW);
         analogWrite(MOTER_RIGHT_EN, 255);
 
+
         digitalWrite(MOTER_LEFT_FWD, LOW);
         digitalWrite(MOTER_LEFT_BWD, LOW);
         analogWrite(MOTER_LEFT_EN, 255);
+
 }
