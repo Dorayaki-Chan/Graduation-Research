@@ -114,7 +114,7 @@ class ControlTheCar:
                 self.__update_dx(x)
                 self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
-            self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "左旋回:"+str(self.__xToAngle(self.tx))+"度")
+            self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "左旋回:"+str(self.__xToAngle(self.tx))+"度")
             print("右"+str(self.__xToAngle(self.tx)))
         else:
             pass
