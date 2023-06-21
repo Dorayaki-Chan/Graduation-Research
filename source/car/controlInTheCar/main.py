@@ -82,8 +82,8 @@ class ControlTheCar:
         self.__turn(angle)
         distance = self.__howManyMove(x, y)
         print("行くよ" + str(distance))
-        # self.__move(distance)
-        self.__move2(x, y)
+        self.__move(distance)
+        self.__chosei(x, y)
     
     # ロボットの回転制御
     def __turn(self, angle):
@@ -116,7 +116,7 @@ class ControlTheCar:
         self.drive.move_stop()
     
     # 座標で止まる
-    def __move2(self, x, y):
+    def __chosei(self, x, y):
         self.ty = 0
         if x > 0:
             while x <= self.ax:
@@ -125,6 +125,17 @@ class ControlTheCar:
                 self.__update_txty(y)
         else:
             while x >= self.ax:
+                self.drive.move_forward()
+                x, y = self.__motion()
+                self.__update_txty(y)
+        self.drive.move_stop()
+        if y > 0:
+            while y <= self.ay:
+                self.drive.move_forward()
+                x, y = self.__motion()
+                self.__update_txty(y)
+        else:
+            while y >= self.ay:
                 self.drive.move_forward()
                 x, y = self.__motion()
                 self.__update_txty(y)
