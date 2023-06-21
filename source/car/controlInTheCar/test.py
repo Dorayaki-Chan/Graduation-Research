@@ -19,7 +19,8 @@ def howDiffRotation(rotation):
         dif_rotation += 360
     return dif_rotation
 
-print(howRotation(-1, -1))
-print(howDiffRotation(howRotation(-1, -1)))
+# print(howRotation(-1, -1))
+# print(howDiffRotation(howRotation(-1, -1)))
 
-print(-now_rotation)
+# print(-now_rotation)
+print(round(math.cos(math.radians(60)), 5))

@@ -52,105 +52,29 @@ class DriveTheCar:
 class ControlTheCar:
     def __init__(self):
         # ロボットの座標/角度を初期化
-        self.tx = 0
-        self.ty = 0
-        self.angle = 90
+        # 単位 : mm
+        self.ax = 0
+        self.ay = 0
+        self.dx = 0
+        self.aangle = 90
         
         # 動作中のみ保持する座標/角度を初期化
-        self.x = 0
-        self.y = 0
-
-        # 永続的に円周を保存するための変数
-        self.dx = 2 * OPTICAL_HANKEI * math.pi * 1 / 4
+        # 単位 : mm
+        self.tx = 0
+        self.ty = 0
 
         self.speed = 0
 
         # センサーをセットアップ
         self.flo = SensorClass(spi_port=0, spi_cs_gpio=BG_CS_FRONT_BCM)
-        self.flo.set_rotation(0)     # Rotation of sensor in degrees
-                                # choices=[0, 90, 180, 270]
+        self.flo.set_rotation(0)    # Rotation of sensor in degrees
+                                    # choices=[0, 90, 180, 270]
 
         # 制御クラスをインスタンス化
         self.drive = DriveTheCar()
 
         # 経過時間を計測するために開始時刻を保存
         self.start = time.time()
-    
-    def __turn(self, angle):
-        self.x = 0
-        if angle < 0:
-            while (-(angle)) > self.__xToAngle(self.x):
-                x, y = self.__motion()
-                self.drive.turn_right()
-                self.__update_dx(x)
-                #print(self.__xToAngle(self.x))
-            self.drive.move_stop()
-        elif angle > 0:
-            while angle > self.__xToAngle(self.x):
-                x, y = self.__motion()
-                self.__motion()
-                self.drive.turn_left()
-                self.__update_dx(x)
-                #print(self.__xToAngle(self.x))
-            self.drive.move_stop()
-        else:
-            pass
-
-    def __move(self, distance):
-        self.y = 0
-        while distance > self.y * OPTICAL_KEISUU:
-            x, y = self.__motion()
-            self.drive.move_forward()
-            self.__update_txty(y)
-            # print(self.y * OPTICAL_KEISUU)
-        self.drive.move_stop()
-        print(self.tx * OPTICAL_KEISUU, self.ty * OPTICAL_KEISUU, self.__xToAngle(self.dx))
-    
-    # 経過時間を秒で返す
-    def __get_elapsed_time(self):
-        return time.time() - self.start
-        
-    def __motion(self):
-        try:
-            x, y = self.flo.get_motion()
-            self.x += x
-            self.y += y 
-            time.sleep(0.01)
-            return x, y
-        except RuntimeError:
-            return 0, 0
-
-    # ロボットの座標/角度を更新する
-    def __update_txty(self, y):
-        self.tx += y * math.cos(math.radians(self.__xToAngle(self.dx)))
-        self.ty += y * math.sin(math.radians(self.__xToAngle(self.dx)))
-    
-    def __update_dx(self, x):
-        self.dx += x
-        dx = self.dx * OPTICAL_KEISUU
-        if dx > ENSHU:
-            self.dx -= ENSHU / OPTICAL_KEISUU
-        elif dx < (-ENSHU):
-            self.dx += ENSHU / OPTICAL_KEISUU
-    
-    # 何度回れば目標座標に向くかを計算する(+/-(0~180))
-    def __howManyTimesDoIHaveToTurn(self, x, y):
-        dif_x = x - self.tx * OPTICAL_KEISUU
-        dif_y = y - self.ty * OPTICAL_KEISUU
-
-        dif_rotation = math.degrees(math.atan2(dif_y, dif_x)) - self.__xToAngle(self.dx)
-        
-        if dif_rotation > 180:
-            dif_rotation -= 360
-        elif dif_rotation < -180:
-            dif_rotation += 360
-        return dif_rotation
-
-    def __howManyMove(self, x, y):
-        dif_x = x - self.tx * OPTICAL_KEISUU
-        dif_y = y - self.ty * OPTICAL_KEISUU
-
-        return math.sqrt(dif_x ** 2 + dif_y ** 2)
     
     def goto(self, x, y):
         angle = self.__howManyTimesDoIHaveToTurn(x, y)
@@ -159,11 +83,86 @@ class ControlTheCar:
         distance = self.__howManyMove(x, y)
         print("行くよ" + str(distance))
         self.__move(distance)
+    
+    # ロボットの回転制御
+    def __turn(self, angle):
+        # 回転開始前に初期化
+        self.tx = 0
+        if angle < 0:
+            while (-(angle)) > self.__xToAngle(self.tx):
+                self.drive.turn_right()
+                x, y = self.__motion()
+                self.__update_dx(x)
+            self.drive.move_stop()
+        elif angle > 0:
+            while angle > self.__xToAngle(self.tx):
+                self.drive.turn_left()
+                x, y = self.__motion()
+                self.__update_dx(x)
+            self.drive.move_stop()
+        else:
+            pass
 
+    def __move(self, distance):
+        self.ty = 0
+        while distance > self.ty:
+            self.drive.move_forward()
+            x, y = self.__motion()
+            self.__update_txty(y)
+        self.drive.move_stop()
+    
+    # 経過時間を秒で返す
+    def __get_elapsed_time(self):
+        return time.time() - self.start
+    
+    # オプティカルフローセンサの値取得
+    def __motion(self):
+        try:
+            mx, my = self.flo.get_motion()
+            x = mx * OPTICAL_KEISUU
+            y = my * OPTICAL_KEISUU
+            self.tx += x
+            self.ty += y
+            time.sleep(0.01)
+            return x, y
+        except RuntimeError:
+            return 0, 0
 
-    # 円周(X座標)から角度を計算する
+    # ロボットの座標/角度を更新する
+    def __update_txty(self, y):
+        self.tx += y * math.cos(math.radians(self.aangle))
+        self.ty += y * math.sin(math.radians(self.aangle))
+    
+    # 総円周と角度を計算
+    def __update_dx(self, x):
+        self.dx += x
+        if self.dx > ENSHU:
+            self.dx -= ENSHU
+        elif self.dx < (-ENSHU):
+            self.dx += ENSHU
+        self.aangle = self.__xToAngle(self.dx)
+    
+    # 何度回れば目標座標に向くかを計算する(+/-(0~180))
+    def __howManyTimesDoIHaveToTurn(self, x, y):
+        dif_x = x - self.ax
+        dif_y = y - self.ay
+        dif_rotation = math.degrees(math.atan2(dif_y, dif_x)) - self.aangle
+        
+        if dif_rotation > 180:
+            dif_rotation -= 360
+        elif dif_rotation < -180:
+            dif_rotation += 360
+        return dif_rotation
+
+    # 進む距離を計算する
+    def __howManyMove(self, x, y):
+        dif_x = x - self.tx
+        dif_y = y - self.ty
+        return math.sqrt(dif_x ** 2 + dif_y ** 2)
+
+    # 円周(X座標)から角度を計算する(戻り値は必ず+)
     def __xToAngle(self, x):
-        angle = (abs(x) * OPTICAL_KEISUU * 360) / (2 * math.pi * OPTICAL_HANKEI)
+        angle = (abs(x) * 360) / (2 * OPTICAL_HANKEI * math.pi)
         return  angle
 
 
