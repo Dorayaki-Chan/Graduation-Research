@@ -94,12 +94,14 @@ class ControlTheCar:
                 x, y = self.__motion()
                 self.__update_dx(x)
             self.drive.move_stop()
+            print("左"+str(self.tx))
         elif angle > 0:
             while angle > self.__xToAngle(self.tx):
                 self.drive.turn_right()
                 x, y = self.__motion()
                 self.__update_dx(x)
             self.drive.move_stop()
+            print("右"+str(self.tx))
         else:
             pass
 
