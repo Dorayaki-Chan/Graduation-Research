@@ -20,8 +20,10 @@ SensorClass = PMW3901
 class DriveTheCar:
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 254 #220
-        self.bwd = 0 #34
+        self.fwd = 254
+        self.bwd = 0
+        self.rfwd = 200
+        self.rbwd = 54
 
     def move_forward(self):
         # print("前進")
@@ -36,12 +38,12 @@ class DriveTheCar:
     def turn_right(self):
         # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
-        self.ser.write(bytes([255, self.fwd, self.bwd, 255]))
+        self.ser.write(bytes([255, self.rfwd, self.rbwd, 255]))
 
     def turn_left(self):
         # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
-        self.ser.write(bytes([255, self.bwd,  self.fwd, 255]))
+        self.ser.write(bytes([255, self.rbwd,  self.rfwd, 255]))
 
     def move_stop(self):
         # print("停止")
@@ -139,7 +141,7 @@ class ControlTheCar:
     def __motion(self):
         try:
             mx, my = self.flo.get_motion()
-            x = mx * OPTICAL_KEISUU
+            x = -1 * mx * OPTICAL_KEISUU
             y = my * OPTICAL_KEISUU
             self.tx += x
             self.ty += y
@@ -237,11 +239,8 @@ class Logs:
 def main():
     try:
         control = ControlTheCar()
-        control.goto(-100, 100)
-        control.goto(0, 0)
-        control.goto(100, 100)
-        control.goto(0, 0)
-        control.goto(0, -100)
+        control.goto(-500, 500)
+        control.goto(500, 1000)
         control.goto(0, 0)
         control.logs.makeCSV()
         control.logs.makeTXT()
