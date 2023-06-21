@@ -5,11 +5,11 @@ from pmw3901 import PMW3901, BG_CS_FRONT_BCM, BG_CS_BACK_BCM
 import os
 import math
 import serial
+import csv
 
 OPTICAL_KEISUU = 0.188679245
 OPTICAL_HANKEI = 50
 ENSHU = 2 * OPTICAL_HANKEI * math.pi
-
 
 # Pick the right class for the specified breakout
 SensorClass = PMW3901 
@@ -73,18 +73,23 @@ class ControlTheCar:
         # 制御クラスをインスタンス化
         self.drive = DriveTheCar()
 
+        # ログクラスをインスタンス化
+        self.logs = Logs()
+
         # 経過時間を計測するために開始時刻を保存
         self.start = time.time()
     
     def goto(self, x, y):
         angle = self.__howManyTimesDoIHaveToTurn(x, y)
         print("曲がるよ!" + str(angle))
+        self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "回転:"+str(angle)+"度")
         self.__turn(angle)
         distance = self.__howManyMove(x, y)
         print("行くよ" + str(distance))
+        self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(distance)+"mm")
         self.__move(distance)
         print("絶対角度" + str(self.aangle)+"絶対座標"+str(self.ax)+" "+str(self.ay))
-        #self.__chosei(x, y)
+        self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "完了")
     
     # ロボットの回転制御
     def __turn(self, angle):
@@ -95,17 +100,22 @@ class ControlTheCar:
                 self.drive.turn_left()
                 x, y = self.__motion()
                 self.__update_dx(x)
+                self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
+            self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "右旋回:"+str(self.__xToAngle(self.tx))+"度")
             print("左"+str(self.tx))
         elif angle > 0:
             while angle > self.__xToAngle(self.tx):
                 self.drive.turn_right()
                 x, y = self.__motion()
                 self.__update_dx(x)
+                self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
+            self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "左旋回:"+str(self.__xToAngle(self.tx))+"度")
             print("右"+str(self.tx))
         else:
             pass
+        self.tx = 0
 
     def __move(self, distance):
         self.ty = 0
@@ -113,38 +123,14 @@ class ControlTheCar:
             self.drive.move_forward()
             x, y = self.__motion()
             self.__update_txty(y)
+            self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
         self.drive.move_stop()
-    
-    """
-    # 座標で止まる
-    def __chosei(self, x, y):
+        self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(self.ty)+"mm")
         self.ty = 0
-        if x > 0:
-            while x <= self.ax:
-                self.drive.move_forward()
-                x, y = self.__motion()
-                self.__update_txty(y)
-        else:
-            while x >= self.ax:
-                self.drive.move_forward()
-                x, y = self.__motion()
-                self.__update_txty(y)
-        self.drive.move_stop()
-        if y > 0:
-            while y <= self.ay:
-                self.drive.move_forward()
-                x, y = self.__motion()
-                self.__update_txty(y)
-        else:
-            while y >= self.ay:
-                self.drive.move_forward()
-                x, y = self.__motion()
-                self.__update_txty(y)
-        self.drive.move_stop()
-    """
+    
     # 経過時間を秒で返す
     def __get_elapsed_time(self):
-        return time.time() - self.start
+        return round(time.time() - self.start, 4)
     
     # オプティカルフローセンサの値取得
     def __motion(self):
@@ -199,18 +185,59 @@ class ControlTheCar:
         angle = (abs(x) * 360) / (2 * OPTICAL_HANKEI * math.pi)
         return  angle
 
+# logクラス
+class Logs:
+    def __init__(self):
+        self.alllogs = []
+        self.pointlogs = []
+        # logフォルダーのパス
+        self.log_folder_path = "./log"
+        # logフォルダーが存在しない場合は作成する
+        if not os.path.exists(self.log_folder_path):
+            os.makedirs(self.log_folder_path)
+    
+    def addAll(self, time, ax, ay, aa, tx, ty, ta):
+        self.alllogs.append({'time': time, 'ax': ax, 'ay': ay, 'aa': aa, 'tx': tx, 'ty': ty, 'ta': ta})
+    
+    def addPoint(self, time, ax, ay, aa, tx, ty, ta, order):
+        self.pointlogs.append({'time': time, 'ax': ax, 'ay': ay, 'aa': aa, 'tx': tx, 'ty': ty, 'ta': ta, 'order': order})
+    
+    def showAll(self):
+        for log in self.alllogs:
+            print(log)
 
-#shiken = DriveTheCar()
-#for i in range(3):
-#    shiken.move_forward()
-#    time.sleep(1)
+    def showPoint(self):
+        for log in self.pointlogs:
+            print(log)
 
-try:
-    control = ControlTheCar()
-    control.goto(-500, 500)
-    control.goto(500, 1000)
-    control.goto(0, 0)
-except KeyboardInterrupt:
-    pass
+    def makeCSV(self):
+        # ファイル名を作成
+        now = time.strftime('%Y%m%d_%H%M%S')
+        filename = 'OpticalFlow_All-' + now + '.csv'
+        # CSVファイルを保存
+        file_path = os.path.join(self.log_folder_path, filename)
+        with open(file_path, 'w') as f:
+            writer = csv.DictWriter(f, ['time', 'ax', 'ay', 'aa', 'tx', 'ty', 'ta', 'order'])
+            for log in self.alllogs:
+                writer.writerow(log)
+
+    def makeTXT(self):
+        # ファイル名を作成
+        now = time.strftime('%Y%m%d_%H%M%S')
+        filename = 'OpticalFlow_Point-' + now + '.txt'
+        # TXTファイルを保存
+        file_path = os.path.join(self.log_folder_path, filename)
+        with open(file_path, 'w') as f:
+            for log in self.pointlogs:
+                f.write(str(log) + '\n')
+
+if __name__ == "__main__":
+    try:
+        control = ControlTheCar()
+        control.goto(-500, 500)
+        control.goto(500, 1000)
+        control.goto(0, 0)
+    except KeyboardInterrupt:
+        pass
 
 print("終了")
