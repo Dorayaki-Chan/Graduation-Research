@@ -8,21 +8,8 @@ import csv
 import os
 
 
-# parser = argparse.ArgumentParser()
-# parser.add_argument('--board', type=str,
-#                     choices=['pmw3901', 'paa5100'],
-#                     required=True,
-#                     help='Breakout type.')
-# parser.add_argument('--rotation', type=int,
-#                     default=0, choices=[0, 90, 180, 270],
-#                     help='Rotation of sensor in degrees.')
-# parser.add_argument('--spi-slot', type=str,
-#                     default='front', choices=['front', 'back'],
-#                     help='Breakout Garden SPI slot.')
-# args = parser.parse_args()
-
 # Pick the right class for the specified breakout
-SensorClass = PMW3901 # if args.board == 'pmw3901' else PAA5100
+SensorClass = PMW3901 
 
 flo = SensorClass(spi_port=0, spi_cs_gpio=BG_CS_FRONT_BCM)
 flo.set_rotation(0)     # Rotation of sensor in degrees
@@ -32,6 +19,13 @@ tx = 0
 ty = 0
 
 data = []
+
+# 経過時間を計測するために開始時刻を保存
+start = time.time()
+
+# 経過時間を秒で返す
+def get_elapsed_time():
+    return time.time() - start
 
 try:
     while True:
