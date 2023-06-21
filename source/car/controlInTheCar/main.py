@@ -83,6 +83,7 @@ class ControlTheCar:
         distance = self.__howManyMove(x, y)
         print("行くよ" + str(distance))
         self.__move(distance)
+        print("絶対角度" + str(self.aangle)+"絶対座標"+str(self.ax)+" "+str(self.ay))
         #self.__chosei(x, y)
     
     # ロボットの回転制御
@@ -105,7 +106,6 @@ class ControlTheCar:
             print("右"+str(self.tx))
         else:
             pass
-        print("絶対角度" + str(self.aangle)+"絶対座標"+str(self.ax)+" "+str(self.ay))
 
     def __move(self, distance):
         self.ty = 0
