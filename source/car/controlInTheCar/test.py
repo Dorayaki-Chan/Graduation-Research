@@ -1,5 +1,6 @@
 # 目標座標との角度を計算するプログラム
 import math
+import time
 
 now_x = 0
 now_y = 0
@@ -24,3 +25,11 @@ def howDiffRotation(rotation):
 
 # print(-now_rotation)
 print(round(math.cos(math.radians(60)), 5))
+
+start = time.time()
+# 経過時間を秒で返す
+def get_elapsed_time():
+    return time.time() - start
+
+while True:
+    print(round(get_elapsed_time(), 4))
