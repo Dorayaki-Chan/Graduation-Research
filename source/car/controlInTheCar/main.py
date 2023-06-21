@@ -108,7 +108,7 @@ class ControlTheCar:
                 self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
             self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "右旋回:"+str(self.__xToAngle(self.tx))+"度")
-            print("左"+str(self.tx))
+            print("左"+str(self.__xToAngle(self.tx)))
         elif angle > 0:
             while angle > self.__xToAngle(self.tx):
                 self.drive.turn_right()
@@ -238,6 +238,7 @@ class Logs:
 
 def main():
     try:
+        time.sleep(10)
         control = ControlTheCar()
         control.goto(-500, 500)
         control.goto(500, 1000)
