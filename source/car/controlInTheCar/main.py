@@ -55,7 +55,7 @@ class ControlTheCar:
         # 単位 : mm
         self.ax = 0
         self.ay = 0
-        self.dx = 0
+        # self.dx = 0
         self.aangle = 90
         
         # 動作中のみ保持する座標/角度を初期化
@@ -135,12 +135,14 @@ class ControlTheCar:
     
     # 総円周と角度を計算
     def __update_dx(self, x):
+        '''
         self.dx += x
         if self.dx > ENSHU:
             self.dx -= ENSHU
         elif self.dx < (-ENSHU):
             self.dx += ENSHU
-        self.aangle = self.__xToAngle(self.dx)
+        '''
+        self.aangle += self.__xToAngle(self.tx)
         print("絶対角度" + str(self.aangle))
     
     # 何度回れば目標座標に向くかを計算する(+/-(0~180))
