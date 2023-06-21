@@ -237,7 +237,14 @@ class Logs:
 def main():
     try:
         control = ControlTheCar()
-        control.goto(0, 500)
+        control.goto(-100, 100)
+        control.goto(0, 0)
+        control.goto(100, 100)
+        control.goto(0, 0)
+        control.goto(0, -100)
+        control.goto(0, 0)
+        control.logs.makeCSV()
+        control.logs.makeTXT()
     except KeyboardInterrupt:
         pass
     print("終了")
