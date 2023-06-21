@@ -141,6 +141,7 @@ class ControlTheCar:
         elif self.dx < (-ENSHU):
             self.dx += ENSHU
         self.aangle = self.__xToAngle(self.dx)
+        print("絶対角度" + str(self.aangle))
     
     # 何度回れば目標座標に向くかを計算する(+/-(0~180))
     def __howManyTimesDoIHaveToTurn(self, x, y):
