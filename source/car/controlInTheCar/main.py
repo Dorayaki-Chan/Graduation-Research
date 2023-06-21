@@ -8,7 +8,7 @@ import serial
 import csv
 
 OPTICAL_KEISUU = 0.188679245
-OPTICAL_HANKEI = 50
+OPTICAL_HANKEI = 155
 ENSHU = 2 * OPTICAL_HANKEI * math.pi
 
 # Pick the right class for the specified breakout
@@ -128,7 +128,7 @@ class ControlTheCar:
             self.__update_txty(y)
             self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
         self.drive.move_stop()
-        self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(self.ty)+"mm")
+        self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(self.ty)+"mm")
         self.ty = 0
     
     # 経過時間を秒で返す
@@ -237,9 +237,7 @@ class Logs:
 def main():
     try:
         control = ControlTheCar()
-        control.goto(-500, 500)
-        control.goto(500, 1000)
-        control.goto(0, 0)
+        control.goto(0, 500)
     except KeyboardInterrupt:
         pass
     print("終了")
