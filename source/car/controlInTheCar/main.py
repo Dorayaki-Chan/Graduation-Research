@@ -126,7 +126,7 @@ class ControlTheCar:
             self.drive.move_forward()
             x, y = self.__motion()
             self.__update_txty(y)
-            self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
+            self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
         self.drive.move_stop()
         self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(self.ty)+"mm")
         self.ty = 0
