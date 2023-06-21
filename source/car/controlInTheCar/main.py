@@ -83,7 +83,7 @@ class ControlTheCar:
         distance = self.__howManyMove(x, y)
         print("行くよ" + str(distance))
         self.__move(distance)
-        self.__chosei(x, y)
+        #self.__chosei(x, y)
     
     # ロボットの回転制御
     def __turn(self, angle):
@@ -115,6 +115,7 @@ class ControlTheCar:
             self.__update_txty(y)
         self.drive.move_stop()
     
+    """
     # 座標で止まる
     def __chosei(self, x, y):
         self.ty = 0
@@ -140,7 +141,7 @@ class ControlTheCar:
                 x, y = self.__motion()
                 self.__update_txty(y)
         self.drive.move_stop()
-    
+    """
     # 経過時間を秒で返す
     def __get_elapsed_time(self):
         return time.time() - self.start
