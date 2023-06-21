@@ -130,8 +130,8 @@ class ControlTheCar:
 
     # ロボットの座標/角度を更新する
     def __update_txty(self, y):
-        self.tx += y * math.cos(math.radians(self.aangle))
-        self.ty += y * math.sin(math.radians(self.aangle))
+        self.ax += y * math.cos(math.radians(self.aangle))
+        self.ay += y * math.sin(math.radians(self.aangle))
     
     # 総円周と角度を計算
     def __update_dx(self, x):
