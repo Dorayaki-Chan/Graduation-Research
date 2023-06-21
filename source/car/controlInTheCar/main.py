@@ -7,7 +7,7 @@ import math
 import serial
 
 OPTICAL_KEISUU = 0.188679245
-OPTICAL_HANKEI = 60
+OPTICAL_HANKEI = 50
 ENSHU = 2 * OPTICAL_HANKEI * math.pi
 
 
@@ -173,8 +173,9 @@ class ControlTheCar:
 
 try:
     control = ControlTheCar()
-    control.goto(500, 500)
+    control.goto(-500, 500)
     control.goto(500, 1000)
+    control.goto(0, 0)
 except KeyboardInterrupt:
     pass
 
