@@ -53,5 +53,5 @@ class Walk:
 
 
 #通信を終了
-client.close()
+# client.close()
 print("ソケット通信を終了")
