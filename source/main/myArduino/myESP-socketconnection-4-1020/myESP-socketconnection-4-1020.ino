@@ -157,7 +157,7 @@ void setup() {
     }
     Serial.println();
     Serial.println("WiFi Connected.");
-    Serial.printf("IP Address  : ");
+    Serial.println("IP Address  : ");
     Serial.println(WiFi.localIP());
 
     server.begin();
