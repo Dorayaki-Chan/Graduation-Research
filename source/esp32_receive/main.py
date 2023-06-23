@@ -1,6 +1,7 @@
 #ESP32-PC間通信用プログラム(PC側)
 #socketライブラリをインポート
 import socket
+import time
 IP_ADDRESS = '10.84.233.110' #サーバー（ESP32のIPアドレス）
 PORT = 5000 #ポート番号
 BUFFER_SIZE = 4092 #一度に受け取るデータの大きさを指定
@@ -28,28 +29,39 @@ class Walk:
         self.client.connect((IP_ADDRESS, PORT))
         pass
 
-    def maigoStart(self):
+    def moveRobot(self):
         while True:
             self.receiveData()
     
     #サーバーからの応答を受信
     def receiveData(self):
-        data = self.client.recv(BUFFER_SIZE) #サーバから送られてきたデータを読み取り（上限4092ビット）
+        datas = self.client.recv(BUFFER_SIZE) #サーバから送られてきたデータを読み取り（上限4092ビット）
         print("サーバからのメッセージ")
-        receiveData = data.decode()
-        print(data.decode())#受け取ったデータ（バイト形式）を読める形式にデコードして表示
-        if len(receiveData) == 12 and receiveData[0] == 'S' and receiveData[11] == 'E':
-            walk_X = int(receiveData[1:6])
-            walk_y = int(receiveData[6:11])
-            self.tx += walk_X
-            self.ty += walk_y
-        else:
-            print("データが破損してます")
-            pass 
+        receiveDatas = datas.decode()
+        print(receiveDatas)#受け取ったデータ（バイト形式）を読める形式にデコードして表示
+        for i in range(0, len(receiveDatas)-12, 12):
+            data = receiveDatas[i:i+12]
+            if len(data) == 12 and data[0] == 'S' and data[11] == 'E':
+                walk_X = int(data[1:6])
+                walk_y = int(data[6:11])
+                self.tx += walk_X
+                self.ty += walk_y
+            else:
+                print("データが破損してます")
+                pass 
 
 '''
 # テスト
 '''
+def test():
+    walk = Walk()
+    while True:
+        walk.receiveData()
+        time.sleep(5)
+
+
+if __name__ == "__main__":
+    test()
 
 
 #通信を終了
