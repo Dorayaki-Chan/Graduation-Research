@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 内容:
 	PDRの受信データを処理するクラス
@@ -15,16 +17,8 @@ BUFFER_SIZE = 4092 #一度に受け取るデータの大きさを指定
 RECIEVE_MESSAGE = ""
 RECIEVE_STATUS = True
 
-'''
-# サーバにデータを送信する
-message = input("送信するメッセージを入力してください\n→")
-message += "\n"#文末に改行コードを追加
-client.sendall(bytes(message, encoding='ASCII'))#文字列をバイトに変換し送信（文字コードはASCIIを使用）
-print("サーバーへデータ送信")
-'''
-
-
 class Walk:
+    """PDRの受信データを処理するクラス"""
     def __init__(self):
         # 絶対座標
         self.tx = 0
@@ -34,18 +28,18 @@ class Walk:
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # サーバーに接続を要求する（IPアドレスとポート番号を指定）
         self.client.connect((IP_ADDRESS, PORT))
-        self.log = log.Logs()
 
-    def moveRobot(self):
-        while True:
-            self.receiveData()
-    
-    #サーバーからの応答を受信
+        #ログクラスをインスタンス化
+        self.log = log.Logs()
+        self.log.start()
+
     def receiveData(self):
+        """ESP32からデータを受け取り処理をする."""
         datas = self.client.recv(BUFFER_SIZE) #サーバから送られてきたデータを読み取り（上限4092ビット）
         print("サーバからのメッセージ")
         receiveDatas = datas.decode()
-        print(receiveDatas)#受け取ったデータ（バイト形式）を読める形式にデコードして表示
+        print(receiveDatas) #受け取ったデータ（バイト形式）を読める形式にデコードして表示
+        # 溜まってるデータを分割
         for i in range(0, len(receiveDatas)-12, 12):
             data = receiveDatas[i:i+12]
             if len(data) == 12 and data[0] == 'S' and data[11] == 'E':
@@ -53,14 +47,14 @@ class Walk:
                 walk_y = int(data[6:11])
                 self.tx += walk_X
                 self.ty += walk_y
+                # ログを取る
+                self.log.addAll(self.tx, self.ty, 0, walk_X, walk_y, 0)
             else:
                 print("データが破損してます")
                 pass 
 
-'''
-# テスト
-'''
 def test():
+    """テスト用関数"""
     walk = Walk()
     while True:
         walk.receiveData()
