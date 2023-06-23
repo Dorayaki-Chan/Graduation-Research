@@ -18,10 +18,8 @@ ENSHU = 2 * OPTICAL_HANKEI * math.pi
 # Pick the right class for the specified breakout
 SensorClass = PMW3901 
 
-
-
-# ロボットの操作を行うクラス
 class DriveTheCar:
+    """ロボットの動きを制御するクラス"""
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
         self.fwd = 254
@@ -54,8 +52,8 @@ class DriveTheCar:
         # ser.write(bytes('s', 'utf-8'))
         self.ser.write(bytes([255, 127,  127, 255]))
 
-# ロボット自身の動きを制御するクラス
 class ControlTheCar:
+    """ロボットの動きを決定するクラス"""
     def __init__(self):
         # ロボットの座標/角度を初期化
         # 単位 : mm
@@ -81,27 +79,36 @@ class ControlTheCar:
 
         # ログクラスをインスタンス化
         self.logs = log.Logs()
-
-        # 経過時間を計測するために開始時刻を保存
-        self.start = time.time()
+        self.logs.startTime()
     
     def goto(self, x, y):
+        """指定座標へ移動する
+
+        引数:
+            x: x座標
+            y: y座標
+        """
         angle = self.__howManyTimesDoIHaveToTurn(x, y)
         print("曲がるよ!" + str(angle))
-        self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "回転:"+str(angle)+"度")
+        self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "回転:"+str(angle)+"度")
         self.__turn(angle)
         distance = self.__howManyMove(x, y)
         print("行くよ" + str(distance))
-        self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(distance)+"mm")
+        self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(distance)+"mm")
         self.__move(distance)
         print("絶対角度" + str(self.aangle)+"絶対座標"+str(self.ax)+" "+str(self.ay))
-        self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "完了")
+        self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "完了")
     
     def get180(self):
+        """180度回転する(魔法の係数確認用)"""
         self.__turn(180)
     
-    # ロボットの回転制御
+    def get500(self):
+        """500mm前進する(魔法の係数確認用)"""
+        self.__move(500)
+    
     def __turn(self, angle):
+        """指定角度回転する"""
         # 回転開始前に初期化
         self.tx = 0
         if angle < 0:
@@ -109,40 +116,37 @@ class ControlTheCar:
                 self.drive.turn_left()
                 x, y = self.__motion()
                 self.__update_dx(x)
-                self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
+                self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
-            self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "右旋回:"+str(self.__xToAngle(self.tx))+"度")
+            self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "右旋回:"+str(self.__xToAngle(self.tx))+"度")
             print("左"+str(self.__xToAngle(self.tx)))
         elif angle > 0:
             while angle > self.__xToAngle(self.tx):
                 self.drive.turn_right()
                 x, y = self.__motion()
                 self.__update_dx(x)
-                self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
+                self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
-            self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "左旋回:"+str(self.__xToAngle(self.tx))+"度")
+            self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "左旋回:"+str(self.__xToAngle(self.tx))+"度")
             print("右"+str(self.__xToAngle(self.tx)))
         else:
             pass
         self.tx = 0
 
     def __move(self, distance):
+        """指定距離移動する"""
         self.ty = 0
         while distance > self.ty:
             self.drive.move_forward()
             x, y = self.__motion()
             self.__update_txty(y)
-            self.logs.addAll(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
+            self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
         self.drive.move_stop()
-        self.logs.addPoint(self.__get_elapsed_time(), self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(self.ty)+"mm")
+        self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "直進:"+str(self.ty)+"mm")
         self.ty = 0
     
-    # 経過時間を秒で返す
-    def __get_elapsed_time(self):
-        return round(time.time() - self.start, 4)
-    
-    # オプティカルフローセンサの値取得
     def __motion(self):
+        """オプティカルフローセンサからロボットの動きを取得する"""
         try:
             mx, my = self.flo.get_motion()
             x = -1 * mx * OPTICAL_KEISUU
@@ -154,13 +158,17 @@ class ControlTheCar:
         except RuntimeError:
             return 0, 0
 
-    # ロボットの座標/角度を更新する
     def __update_txty(self, y):
+        """ロボットの座標/角度を更新する"""
         self.ax += y * math.cos(math.radians(self.aangle))
         self.ay += y * math.sin(math.radians(self.aangle))
     
-    # 総円周と角度を計算
     def __update_dx(self, x):
+        """#総円周と角度を計算する
+        
+        TODO:
+            現在は動く都度計算しているが、まとめて計算するように変更する(ほうが良いかもしれない)
+        """
         '''
         self.dx += x
         if self.dx > ENSHU:
@@ -171,8 +179,12 @@ class ControlTheCar:
         angle = self.__xToAngle(x) 
         self.aangle += angle if x < 0 else -angle
     
-    # 何度回れば目標座標に向くかを計算する(+/-(0~180))
     def __howManyTimesDoIHaveToTurn(self, x, y):
+        """回転する角度を計算する
+        
+        戻値:
+            +/-(0~180))
+        """
         dif_x = x - self.ax
         dif_y = y - self.ay
         dif_rotation = math.degrees(math.atan2(dif_y, dif_x)) - self.aangle
@@ -183,14 +195,14 @@ class ControlTheCar:
             dif_rotation += 360
         return dif_rotation
 
-    # 進む距離を計算する
     def __howManyMove(self, x, y):
+        """移動する距離を計算する"""
         dif_x = x - self.ax
         dif_y = y - self.ay
         return math.sqrt(dif_x ** 2 + dif_y ** 2)
 
-    # 円周(X座標)から角度を計算する(戻り値は必ず+)
     def __xToAngle(self, x):
+        """円周(X座標)から角度を計算する(戻り値は必ず+)"""
         angle = (abs(x) * 360) / (2 * OPTICAL_HANKEI * math.pi)
         return  angle
 
