@@ -28,7 +28,7 @@ class Logs:
     def addAll(self, ax, ay, aa, tx, ty, ta):
         """全ての座標を追加する.
 
-        Args:
+        引数:
             ax (float): 絶対x座標
             ay (float): 絶対y座標
             aa (float): 絶対の傾き
@@ -42,7 +42,7 @@ class Logs:
     def addPoint(self, ax, ay, aa, tx, ty, ta, order):
         """重要ポイントの座標を追加する.
 
-        Args:
+        引数:
             ax (float): 絶対x座標
             ay (float): 絶対y座標
             aa (float): 絶対の傾き
