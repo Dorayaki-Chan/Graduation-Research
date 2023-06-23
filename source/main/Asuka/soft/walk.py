@@ -30,8 +30,8 @@ class Walk:
         self.client.connect((IP_ADDRESS, PORT))
 
         #ログクラスをインスタンス化
-        self.log = log.Logs()
-        self.log.start()
+        self.logs = log.Logs()
+        self.logs.start()
 
     def receiveData(self):
         """ESP32からデータを受け取り処理をする."""
@@ -48,7 +48,7 @@ class Walk:
                 self.tx += walk_X
                 self.ty += walk_y
                 # ログを取る
-                self.log.addAll(self.tx, self.ty, 0, walk_X, walk_y, 0)
+                self.logs.addAll(self.tx, self.ty, 0, walk_X, walk_y, 0)
             else:
                 print("データが破損してます")
                 pass 
