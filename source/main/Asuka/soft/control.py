@@ -79,7 +79,7 @@ class ControlTheCar:
 
         # ログクラスをインスタンス化
         self.logs = log.Logs()
-        self.logs.startTime()
+        self.logs.start()
     
     def goto(self, x, y):
         """指定座標へ移動する
