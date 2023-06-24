@@ -214,8 +214,8 @@ def main():
         control.goto(-500, 500)
         control.goto(500, 1000)
         control.goto(0, 0)
-        control.logs.makeCSV()
-        control.logs.makeTXT()
+        control.logs.makeCSV('OpticalFlow')
+        control.logs.makeTXT('OpticalFlow')
     except KeyboardInterrupt:
         pass
     print("終了")
