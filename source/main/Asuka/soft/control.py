@@ -79,7 +79,7 @@ class ControlTheCar:
 
         # ログクラスをインスタンス化
         self.logs = log.Logs()
-        self.logs.startTime()
+        self.logs.start()
     
     def goto(self, x, y):
         """指定座標へ移動する
@@ -214,8 +214,8 @@ def main():
         control.goto(-500, 500)
         control.goto(500, 1000)
         control.goto(0, 0)
-        control.logs.makeCSV()
-        control.logs.makeTXT()
+        control.logs.makeCSV('OpticalFlow')
+        control.logs.makeTXT('OpticalFlow')
     except KeyboardInterrupt:
         pass
     print("終了")

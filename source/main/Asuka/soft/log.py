@@ -64,11 +64,11 @@ class Logs:
         for log in self.pointlogs:
             print(log)
 
-    def makeCSV(self):
+    def makeCSV(self, name):
         """全ログファイルを生成する."""
         # ファイル名を作成
         now = time.strftime('%Y%m%d_%H%M%S')
-        filename = 'OpticalFlow_All-' + now + '.csv'
+        filename = name + '_All-' + now + '.csv'
         # CSVファイルを保存
         file_path = os.path.join(self.log_folder_path, filename)
         with open(file_path, 'w') as f:
@@ -76,11 +76,11 @@ class Logs:
             for log in self.alllogs:
                 writer.writerow(log)
 
-    def makeTXT(self):
+    def makeTXT(self, name):
         """重要ポイントのログファイルを生成する."""
         # ファイル名を作成
         now = time.strftime('%Y%m%d_%H%M%S')
-        filename = 'OpticalFlow_Point-' + now + '.txt'
+        filename = name + '_Point-' + now + '.txt'
         # TXTファイルを保存
         file_path = os.path.join(self.log_folder_path, filename)
         with open(file_path, 'w') as f:
