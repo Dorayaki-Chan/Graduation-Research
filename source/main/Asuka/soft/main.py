@@ -12,7 +12,7 @@ import socket
 import time
 import log
 import control
-IP_ADDRESS = '10.84.233.110' #サーバー（ESP32のIPアドレス）
+IP_ADDRESS = '10.84.233.79' #サーバー（ESP32のIPアドレス）
 PORT = 5000 #ポート番号
 BUFFER_SIZE = 4092 #一度に受け取るデータの大きさを指定
 RECIEVE_MESSAGE = ""
