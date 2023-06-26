@@ -22,10 +22,10 @@ class DriveTheCar:
     """ロボットの動きを制御するクラス"""
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 254
-        self.bwd = 0
-        self.rfwd = 220
-        self.rbwd = 34
+        self.fwd = 0
+        self.bwd = 254
+        self.rfwd = 34
+        self.rbwd = 220
 
     def move_forward(self):
         # print("前進")
@@ -40,12 +40,12 @@ class DriveTheCar:
     def turn_right(self):
         print("右回転")
         # ser.write(bytes('r', 'utf-8'))
-        self.ser.write(bytes([255, self.rbwd,  self.rfwd, 255]))
+        self.ser.write(bytes([255, self.rfwd,  self.rbwd, 255]))
 
     def turn_left(self):
         print("左回転")
         # ser.write(bytes('l', 'utf-8'))
-        self.ser.write(bytes([255, self.rfwd, self.rbwd, 255]))
+        self.ser.write(bytes([255, self.rbwd, self.rfwd, 255]))
     
     def turn_right_1(self):
         print("右回転")
