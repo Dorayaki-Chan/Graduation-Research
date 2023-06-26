@@ -34,6 +34,9 @@ void setup() {
 }
 
 void loop() {
+        forword('r');
+        forword('l');
+        /*
         int motorSig[2]={0};//送られたデータをそのまま受け取る
         int incomingByteNum = 0;//何バイト目か
         int lastRecvTime=0;
@@ -87,6 +90,7 @@ void loop() {
                         }
                 }
         }
+        */
 }
 
 void forword(char rf){
