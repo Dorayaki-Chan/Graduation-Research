@@ -139,6 +139,10 @@ class ControlTheCar:
         while distance > self.ty:
             self.drive.move_forward()
             x, y = self.__motion()
+            if x > 0:
+                self.drive.turn_left()
+            elif x < 0:
+                self.drive.turn_right()
             self.__update_txty(y)
             self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
         self.drive.move_stop()
