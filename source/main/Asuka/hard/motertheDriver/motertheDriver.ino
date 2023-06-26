@@ -11,13 +11,13 @@
 TODO:
 
 */
-const int MOTER_RIGHT_EN = 9;
-const int MOTER_RIGHT_FWD = 8;
-const int MOTER_RIGHT_BWD = 11;
+const int MOTER_LEFT_EN = 9;
+const int MOTER_LEFT_FWD = 11;
+const int MOTER_LEFT_BWD = 8;
 
-const int MOTER_LEFT_EN = 10;
-const int MOTER_LEFT_FWD = 12;
-const int MOTER_LEFT_BWD = 13;
+const int MOTER_RIGHT_EN = 10;
+const int MOTER_RIGHT_FWD = 13;
+const int MOTER_RIGHT_BWD = 12;
 
 void setup() {
         // モーター右
@@ -34,9 +34,6 @@ void setup() {
 }
 
 void loop() {
-        forword('r');
-        forword('l');
-        /*
         int motorSig[2]={0};//送られたデータをそのまま受け取る
         int incomingByteNum = 0;//何バイト目か
         int lastRecvTime=0;
@@ -64,18 +61,24 @@ void loop() {
                                 if(incomingByte == 255){//正しい末尾文字ですのでモーターを回します
                                         lastRecvTime=millis();
                                         // 左
-                                        if(motorSig[0]>127)
+                                        if(motorSig[0]>127){
                                                 backword('l');
-
-                                        else{
+                                        }
+                                        else if(motorSig[0]<127){
                                                 forword('l');
+                                        }
+                                        else{
+                                                mstop();
                                         }
                                         analogWrite(MOTER_RIGHT_EN, abs(motorSig[0]-127)*2);
                                         // 右
                                         if(motorSig[1]>127)
                                                 backword('r');
-                                        else{
+                                        else if(motorSig[0]<127){
                                                 forword('r');
+                                        }
+                                        else{
+                                              mstop();
                                         }
                                         analogWrite(MOTER_LEFT_EN,abs(motorSig[1]-127)*2);
                                         //Serial.println(abs(motorSig[1]-127)*2);
@@ -90,7 +93,6 @@ void loop() {
                         }
                 }
         }
-        */
 }
 
 void forword(char rf){
@@ -118,11 +120,7 @@ void backword(char rf){
 void mstop(){
         digitalWrite(MOTER_RIGHT_FWD, LOW);
         digitalWrite(MOTER_RIGHT_BWD, LOW);
-        analogWrite(MOTER_RIGHT_EN, 255);
-
 
         digitalWrite(MOTER_LEFT_FWD, LOW);
         digitalWrite(MOTER_LEFT_BWD, LOW);
-        analogWrite(MOTER_LEFT_EN, 255);
-
 }
