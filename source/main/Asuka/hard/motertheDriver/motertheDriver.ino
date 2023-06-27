@@ -74,7 +74,7 @@ void loop() {
                     // 右
                     if(motorSig[1]>127)
                         backword('r');
-                    else if(motorSig[0]<127){
+                    else if(motorSig[1]<127){
                         forword('r');
                     }
                     else{
