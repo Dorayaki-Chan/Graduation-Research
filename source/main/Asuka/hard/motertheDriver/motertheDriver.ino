@@ -63,22 +63,28 @@ void loop() {
                     // 左
                     if(motorSig[0]>127){
                         backword('l');
+                        Serial.println("backword left");
                     }
                     else if(motorSig[0]<127){
                         forword('l');
+                        Serial.println("forword left");
                     }
                     else{
                         mstop('l');
+                        Serial.println("stop left");
                     }
                     analogWrite(MOTER_RIGHT_EN, abs(motorSig[0]-127)*2);
                     // 右
                     if(motorSig[1]>127)
                         backword('r');
+                        Serial.println("backword right");
                     else if(motorSig[0]<127){
                         forword('r');
+                        Serial.println("forword right");
                     }
                     else{
                         mstop('r');
+                        Serial.println("stop right");
                     }
                     analogWrite(MOTER_LEFT_EN,abs(motorSig[1]-127)*2);
                     //Serial.println(abs(motorSig[1]-127)*2);
