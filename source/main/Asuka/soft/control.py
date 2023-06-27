@@ -38,23 +38,23 @@ class DriveTheCar:
         self.ser.write(bytes([255, self.bwd, self.bwd, 255]))
 
     def turn_right(self):
-        print("右回転")
+        # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
         self.ser.write(bytes([255, self.rfwd,  self.rbwd, 255]))
 
     def turn_left(self):
-        print("左回転")
+        # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
         self.ser.write(bytes([255, self.rbwd, self.rfwd, 255]))
     
     def turn_right_1(self):
-        print("右回転")
+        # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
         self.ser.write(bytes([255, self.rfwd, 127, 255]))
         
 
     def turn_left_1(self):
-        print("左回転")
+        # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
         self.ser.write(bytes([255, 127,  self.rfwd, 255]))
         
@@ -153,16 +153,19 @@ class ControlTheCar:
             x, y = self.__motion()
             self.drive.move_stop()
             dx = 0
+            """
             if x > 0:
                 while -x < dx:
-                    self.drive.turn_left()
+                    self.drive.turn_left_1()
                     ddx, ddy = self.__motion()
                     dx += ddx
             elif x < 0:
                 while -x > dx:
-                    self.drive.turn_right()
+                    self.drive.turn_right_1()
                     ddx, ddy = self.__motion()
                     dx += ddx
+            """
+            # print(x, y)
             self.__update_txty(y)
             self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
         self.drive.move_stop()
@@ -236,9 +239,9 @@ def main():
         #time.sleep(10)
         control = ControlTheCar()
         control.get500()
-        #control.goto(-100, 100)
-        #control.goto(100, 200)
-        #control.goto(0, 0)
+        # control.goto(-100, 100)
+        # control.goto(100, 200)
+        # control.goto(0, 0)
         #control.logs.makeCSV('OpticalFlow')
         #control.logs.makeTXT('OpticalFlow')
     except KeyboardInterrupt:
@@ -246,12 +249,13 @@ def main():
     print("終了")
 
 if __name__ == "__main__":
-    drive = DriveTheCar()
-    while True:
-        # drive.move_forward()
+    main()
+    # drive = DriveTheCar()
+    # while True:
+    #     drive.move_forward()
         # drive.turn_right()
         # drive.turn_right_1()
-        drive.turn_left_1()
+        # drive.turn_right_1()
 
     #drive = DriveTheCar()
     #drive.turn_left()
