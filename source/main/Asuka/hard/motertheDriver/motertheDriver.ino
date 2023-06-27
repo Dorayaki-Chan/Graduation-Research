@@ -62,30 +62,22 @@ void loop() {
                     lastRecvTime=millis();
                     // 左
                     if(motorSig[0]>127){
-                        Serial.write(1)
                         backword('l');
                     }
                     else if(motorSig[0]<127){
-                        Serial.write(2)
                         forword('l');
                     }
                     else{
-                        Serial.write(3)
                         mstop('l');
                     }
                     analogWrite(MOTER_RIGHT_EN, abs(motorSig[0]-127)*2);
                     // 右
                     if(motorSig[1]>127)
-                    {
-                        Serial.write(4)
                         backword('r');
-                    }
-                    else if(motorSig[1]<127){
-                        Serial.write(5)
+                    else if(motorSig[0]<127){
                         forword('r');
                     }
                     else{
-                        Serial.write(6)
                         mstop('r');
                     }
                     analogWrite(MOTER_LEFT_EN,abs(motorSig[1]-127)*2);
