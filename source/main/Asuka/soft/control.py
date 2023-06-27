@@ -31,38 +31,45 @@ class DriveTheCar:
         # print("前進")
         # ser.write(bytes('f', 'utf-8'))
         self.ser.write(bytes([255, self.fwd,  self.fwd, 255]))
+        print(self.ser.read())
 
     def move_backward(self):
         # print("後進")
         # ser.write(bytes('b', 'utf-8'))
         self.ser.write(bytes([255, self.bwd, self.bwd, 255]))
+        print(self.ser.read())
 
     def turn_right(self):
         print("右回転")
         # ser.write(bytes('r', 'utf-8'))
         self.ser.write(bytes([255, self.rfwd,  self.rbwd, 255]))
+        print(self.ser.read())
 
     def turn_left(self):
         print("左回転")
         # ser.write(bytes('l', 'utf-8'))
         self.ser.write(bytes([255, self.rbwd, self.rfwd, 255]))
+        print(self.ser.read())
     
     def turn_right_1(self):
         print("右回転")
         # ser.write(bytes('r', 'utf-8'))
         self.ser.write(bytes([255, self.rfwd, 127, 255]))
+        print(self.ser.read())
         
 
     def turn_left_1(self):
         print("左回転")
         # ser.write(bytes('l', 'utf-8'))
         self.ser.write(bytes([255, 127,  self.rfwd, 255]))
+        print(self.ser.read())
         
 
     def move_stop(self):
         # print("停止")
         # ser.write(bytes('s', 'utf-8'))
         self.ser.write(bytes([255, 127,  127, 255]))
+        print(self.ser.read())
 
 class ControlTheCar:
     """ロボットの動きを決定するクラス"""
@@ -246,7 +253,13 @@ def main():
     print("終了")
 
 if __name__ == "__main__":
-    main()
+    drive = DriveTheCar()
+    while True:
+        # drive.move_forward()
+        # drive.turn_right()
+        # drive.turn_right_1()
+        drive.turn_left_1()
+
     #drive = DriveTheCar()
     #drive.turn_left()
     #time.sleep(5000)
