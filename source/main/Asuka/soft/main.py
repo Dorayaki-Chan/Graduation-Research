@@ -51,8 +51,8 @@ class Walk:
         for i in range(0, len(receiveDatas), 12):
             data = receiveDatas[i:i+12]
             if len(data) == 12 and data[0] == 'S' and data[11] == 'E' and data != 'S0000000000E':
-                walk_X = int(data[1:6]) * 10 * 0.5 # cm → mm
-                walk_y = int(data[6:11]) *10 * 0.5 # cm → mm
+                walk_X = int(data[1:6]) * 10 # cm → mm
+                walk_y = int(data[6:11]) *10 # cm → mm
                 self.tx += walk_X
                 self.ty += walk_y
                 print(self.tx, self.ty, walk_X, walk_y)
