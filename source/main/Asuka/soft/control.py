@@ -24,8 +24,8 @@ class DriveTheCar:
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
         self.fwd = 0
         self.bwd = 254
-        self.rfwd = 34
-        self.rbwd = 220
+        self.rfwd = 54
+        self.rbwd = 200
 
     def move_forward(self):
         # print("前進")
@@ -117,7 +117,7 @@ class ControlTheCar:
     
     def get500(self):
         """500mm前進する(魔法の係数確認用)"""
-        self.__move(3000)
+        self.__move(500)
     
     def __turn(self, angle):
         """指定角度回転する"""
@@ -239,6 +239,7 @@ def main():
         #time.sleep(10)
         control = ControlTheCar()
         control.get500()
+        control.get180()
         # control.goto(-100, 100)
         # control.goto(100, 200)
         # control.goto(0, 0)
