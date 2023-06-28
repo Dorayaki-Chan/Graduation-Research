@@ -12,7 +12,7 @@ import socket
 import time
 import log
 import control
-IP_ADDRESS = '10.84.233.87' #サーバー（ESP32のIPアドレス）
+IP_ADDRESS = '10.84.233.103' #サーバー（ESP32のIPアドレス）
 PORT = 5000 #ポート番号
 BUFFER_SIZE = 4092 #一度に受け取るデータの大きさを指定
 RECIEVE_MESSAGE = ""
@@ -70,7 +70,7 @@ def main():
     try:
         pdr = Walk()
         while True:
-            pdr.receiveData(False)
+            pdr.receiveData(True)
     except KeyboardInterrupt:
         pdr.asuka.logs.makeCSV('OpticalFlow')
         pdr.asuka.logs.makeTXT('OpticalFlow')
