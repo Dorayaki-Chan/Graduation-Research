@@ -22,10 +22,10 @@ class DriveTheCar:
     """ロボットの動きを制御するクラス"""
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 254
-        self.bwd = 0
-        self.rfwd = 200
-        self.rbwd = 54
+        self.fwd = 0
+        self.bwd = 254
+        self.rfwd = 54
+        self.rbwd = 200
 
     def move_forward(self):
         # print("前進")
@@ -40,12 +40,24 @@ class DriveTheCar:
     def turn_right(self):
         # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
-        self.ser.write(bytes([255, self.rfwd, self.rbwd, 255]))
+        self.ser.write(bytes([255, self.rfwd,  self.rbwd, 255]))
 
     def turn_left(self):
         # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
-        self.ser.write(bytes([255, self.rbwd,  self.rfwd, 255]))
+        self.ser.write(bytes([255, self.rbwd, self.rfwd, 255]))
+    
+    def turn_right_1(self):
+        # print("右回転")
+        # ser.write(bytes('r', 'utf-8'))
+        self.ser.write(bytes([255, self.rfwd, 127, 255]))
+        
+
+    def turn_left_1(self):
+        # print("左回転")
+        # ser.write(bytes('l', 'utf-8'))
+        self.ser.write(bytes([255, 127,  self.rfwd, 255]))
+        
 
     def move_stop(self):
         # print("停止")
@@ -113,7 +125,7 @@ class ControlTheCar:
         self.tx = 0
         if angle < 0:
             while (-(angle)) > self.__xToAngle(self.tx):
-                self.drive.turn_left()
+                self.drive.turn_right()
                 x, y = self.__motion()
                 self.__update_dx(x)
                 self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
@@ -122,7 +134,7 @@ class ControlTheCar:
             print("左"+str(self.__xToAngle(self.tx)))
         elif angle > 0:
             while angle > self.__xToAngle(self.tx):
-                self.drive.turn_right()
+                self.drive.turn_left()
                 x, y = self.__motion()
                 self.__update_dx(x)
                 self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
@@ -139,6 +151,21 @@ class ControlTheCar:
         while distance > self.ty:
             self.drive.move_forward()
             x, y = self.__motion()
+            self.drive.move_stop()
+            dx = 0
+            """
+            if x > 0:
+                while -x < dx:
+                    self.drive.turn_left_1()
+                    ddx, ddy = self.__motion()
+                    dx += ddx
+            elif x < 0:
+                while -x > dx:
+                    self.drive.turn_right_1()
+                    ddx, ddy = self.__motion()
+                    dx += ddx
+            """
+            # print(x, y)
             self.__update_txty(y)
             self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
         self.drive.move_stop()
@@ -209,16 +236,29 @@ class ControlTheCar:
 
 def main():
     try:
-        time.sleep(10)
+        #time.sleep(10)
         control = ControlTheCar()
-        control.goto(-500, 500)
-        control.goto(500, 1000)
-        control.goto(0, 0)
-        control.logs.makeCSV('OpticalFlow')
-        control.logs.makeTXT('OpticalFlow')
+        control.get500()
+        control.get180()
+        # control.goto(-100, 100)
+        # control.goto(100, 200)
+        # control.goto(0, 0)
+        #control.logs.makeCSV('OpticalFlow')
+        #control.logs.makeTXT('OpticalFlow')
     except KeyboardInterrupt:
         pass
     print("終了")
 
 if __name__ == "__main__":
     main()
+    # drive = DriveTheCar()
+    # while True:
+    #     drive.move_forward()
+        # drive.turn_right()
+        # drive.turn_right_1()
+        # drive.turn_right_1()
+
+    #drive = DriveTheCar()
+    #drive.turn_left()
+    #time.sleep(5000)
+    #drive.move_stop()
