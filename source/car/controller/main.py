@@ -7,8 +7,8 @@ import serial
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 
-f_speed = 254
-b_speed = 0
+f_speed = 0
+b_speed = 254
 
 def move_forward():
     print("前進")
@@ -23,12 +23,12 @@ def move_backward():
 def turn_right():
     print("右回転")
     # ser.write(bytes('r', 'utf-8'))
-    ser.write(bytes([255, b_speed, f_speed, 255]))
+    ser.write(bytes([255, f_speed, b_speed, 255]))
 
 def turn_left():
     print("左回転")
     # ser.write(bytes('l', 'utf-8'))
-    ser.write(bytes([255, f_speed,  b_speed, 255]))
+    ser.write(bytes([255, b_speed,  f_speed, 255]))
 
 def move_stop():
     print("停止")
