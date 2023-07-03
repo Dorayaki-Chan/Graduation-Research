@@ -11,8 +11,10 @@ import math
 import serial
 import log
 
-OPTICAL_KEISUU = 0.188679245
-OPTICAL_HANKEI = 155
+# OPTICAL_KEISUU = 0.188679245
+OPTICAL_KEISUU = 0.3
+# OPTICAL_HANKEI = 155
+OPTICAL_HANKEI = 187
 ENSHU = 2 * OPTICAL_HANKEI * math.pi
 
 # Pick the right class for the specified breakout
@@ -239,7 +241,7 @@ def main():
         #time.sleep(10)
         control = ControlTheCar()
         control.get500()
-        control.get180()
+        # control.get180()
         # control.goto(-100, 100)
         # control.goto(100, 200)
         # control.goto(0, 0)
