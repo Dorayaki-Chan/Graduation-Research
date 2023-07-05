@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 DMAX = 10000
 
 def update(laser, plot, text):
-    timestamp, scan = laser.get_filtered_dist(dmax=DMAX)
+    timestamp, scan = laser.get_filtered_dist(dmax=DMAX, grouping=3)
+    print(scan)
     plot.set_data(*scan.T)
     text.set_text('t: %d' % timestamp)
     plt.draw()

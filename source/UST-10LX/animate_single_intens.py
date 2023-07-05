@@ -12,7 +12,8 @@ def get_colors(intens):
     return np.repeat(intens, 3).reshape((4,3))/max_val 
 
 def update(laser, plot, text):
-    timestamp, scan = laser.get_filtered_intens(dmax=DMAX)
+    timestamp, scan = laser.get_filtered_intens(dmax=DMAX, grouping=3)
+    print(scan)
     plot.set_offsets(scan[:, :2])
     plot.set_array(scan[:, 2])
     text.set_text('t: %d' % timestamp)
