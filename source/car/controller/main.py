@@ -7,8 +7,12 @@ import serial
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 
+
+# f_speed = 0
+# b_speed = 254
 f_speed = 0
 b_speed = 254
+
 
 def move_forward():
     print("前進")
