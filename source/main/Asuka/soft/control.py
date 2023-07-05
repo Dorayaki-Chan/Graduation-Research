@@ -153,9 +153,9 @@ class ControlTheCar:
         while distance > self.ty:
             self.drive.move_forward()
             x, y = self.__motion()
+            """
             self.drive.move_stop()
             dx = 0
-            """
             if x > 0:
                 while -x < dx:
                     self.drive.turn_left_1()
@@ -240,11 +240,11 @@ def main():
     try:
         #time.sleep(10)
         control = ControlTheCar()
-        control.get500()
+        # control.get500()
         # control.get180()
         # control.goto(-100, 100)
         # control.goto(100, 200)
-        # control.goto(0, 0)
+        control.goto(0, 10000)
         #control.logs.makeCSV('OpticalFlow')
         #control.logs.makeTXT('OpticalFlow')
     except KeyboardInterrupt:
