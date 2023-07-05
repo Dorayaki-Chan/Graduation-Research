@@ -9,6 +9,7 @@ import time
 from pmw3901 import PMW3901, BG_CS_FRONT_BCM, BG_CS_BACK_BCM
 import math
 import serial
+import csv
 import log
 
 # OPTICAL_KEISUU = 0.188679245
@@ -120,6 +121,14 @@ class ControlTheCar:
     def get500(self):
         """500mm前進する(魔法の係数確認用)"""
         self.__move(500)
+
+    def gotoCSV(self, filename):
+        """CSVファイルに記載された座標に順番に移動する"""
+        # CSVファイルを読み込む
+        with open(filename, 'r') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                self.goto(int(row[0]), int(row[1]))
     
     def __turn(self, angle):
         """指定角度回転する"""
@@ -244,7 +253,8 @@ def main():
         # control.get180()
         # control.goto(-100, 100)
         # control.goto(100, 200)
-        control.goto(0, 10000)
+        # control.goto(0, 10000)
+        control.gotoCSV("goto.csv")
         #control.logs.makeCSV('OpticalFlow')
         #control.logs.makeTXT('OpticalFlow')
     except KeyboardInterrupt:
