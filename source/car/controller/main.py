@@ -2,16 +2,17 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import font
 import serial
+import time 
 
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 
 
-# f_speed = 0
-# b_speed = 254
-f_speed = 100
-b_speed = 200
+f_speed = 0
+b_speed = 254
+# f_speed = 121
+# b_speed = 133
 
 
 def move_forward():
