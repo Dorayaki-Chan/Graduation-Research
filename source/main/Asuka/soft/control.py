@@ -13,9 +13,11 @@ import csv
 import log
 
 # OPTICAL_KEISUU = 0.188679245
-OPTICAL_KEISUU = 0.3
+# OPTICAL_KEISUU = 0.33
+# OPTICAL_KEISUU = 0.20
+OPTICAL_KEISUU = 0.22
 # OPTICAL_HANKEI = 155
-OPTICAL_HANKEI = 173
+OPTICAL_HANKEI = 210
 ENSHU = 2 * OPTICAL_HANKEI * math.pi
 
 # Pick the right class for the specified breakout
@@ -25,7 +27,7 @@ class DriveTheCar:
     """ロボットの動きを制御するクラス"""
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 54
+        self.fwd = 30
         self.bwd = 200
         self.rfwd = 54
         self.rbwd = 200
@@ -35,7 +37,7 @@ class DriveTheCar:
     def move_forward(self):
         # print("前進")
         # ser.write(bytes('f', 'utf-8'))
-        self.ser.write(bytes([255, self.fwd,  self.fwd, 255]))
+        self.ser.write(bytes([255,  self.fwd,  self.fwd, 255]))
 
     def move_backward(self):
         # print("後進")
@@ -191,10 +193,11 @@ class ControlTheCar:
             mx, my = self.flo.get_motion()
             x = -1 * mx * OPTICAL_KEISUU
             y = my * OPTICAL_KEISUU
-            print(y, my)
+            # print(my, mx)
             self.tx += x
             self.ty += y
-            time.sleep(0.05)
+            # print(self.tx)
+            time.sleep(0.01)
             return x, y
         except RuntimeError:
             return 0, 0
@@ -255,7 +258,7 @@ def main():
         # control.get500()
         # control.get180()
         # control.goto(-100, 1770)
-        control.goto(0, 2000)
+        control.goto(0, 2500)
         # control.goto(0, 10000)
         # control.gotoCSV("./goto.csv")
         #control.logs.makeCSV('OpticalFlow')
