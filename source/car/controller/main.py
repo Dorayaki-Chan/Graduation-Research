@@ -11,7 +11,7 @@ ser = serial.Serial('/dev/ttyACM0', 9600)
 # f_speed = 0
 # b_speed = 254
 f_speed = 100
-b_speed = 254
+b_speed = 200
 
 
 def move_forward():
