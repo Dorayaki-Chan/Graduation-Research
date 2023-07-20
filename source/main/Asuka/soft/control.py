@@ -31,6 +31,8 @@ class DriveTheCar:
         self.bwd = 200
         self.rfwd = 54
         self.rbwd = 200
+        self.chosei_fwds = 121
+        self.chosei_bwds = 133
         # self.rfwd = 104
         # self.rbwd = 150
 
@@ -53,6 +55,15 @@ class DriveTheCar:
         # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
         self.ser.write(bytes([255, self.rbwd, self.rfwd, 255]))
+
+    def chosei_fwd(self):
+        self.ser.write(bytes([255, self.chosei_fwds, self.chosei_fwds, 255]))
+
+    def chosei_right(self):
+        self.ser.write(bytes([255, 127, self.chosei_bwds, 255]))
+    
+    def chosei_left(self):
+        self.ser.write(bytes([255, self.chosei_bwds, 127, 255]))
     
     def turn_right_1(self):
         # print("右回転")
@@ -133,12 +144,15 @@ class ControlTheCar:
             reader = csv.reader(f)
             for row in reader:
                 self.goto(int(row[0]), int(row[1]))
+                print("goto", int(row[0]), int(row[1]))
     
     def __turn(self, angle):
         """指定角度回転する"""
         # 回転開始前に初期化
         self.tx = 0
         if angle < 0:
+            self.drive.chosei_right()
+            time.sleep(4)
             while (-(angle)) > self.__xToAngle(self.tx):
                 self.drive.turn_right()
                 x, y = self.__motion()
@@ -146,8 +160,12 @@ class ControlTheCar:
                 self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
             self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "右旋回:"+str(self.__xToAngle(self.tx))+"度")
-            print("左"+str(self.__xToAngle(self.tx)))
+            print("右"+str(self.__xToAngle(self.tx)))
+            self.drive.chosei_fwd()
+            time.sleep(4)
         elif angle > 0:
+            self.drive.chosei_left()
+            time.sleep(4)
             while angle > self.__xToAngle(self.tx):
                 self.drive.turn_left()
                 x, y = self.__motion()
@@ -155,7 +173,9 @@ class ControlTheCar:
                 self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
             self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "左旋回:"+str(self.__xToAngle(self.tx))+"度")
-            print("右"+str(self.__xToAngle(self.tx)))
+            print("左"+str(self.__xToAngle(self.tx)))
+            self.drive.chosei_fwd()
+            time.sleep(4)
         else:
             pass
         self.tx = 0
@@ -258,8 +278,27 @@ def main():
         # control.get500()
         # control.get180()
         # control.goto(-100, 1770)
-        control.goto(0, 2500)
-        # control.goto(0, 10000)
+        #control.goto(0, 2500)
+        
+        # control.goto(0, 50)
+        #control.goto(500, 1000)
+
+        
+        control.goto(0, 2000)
+        control.goto(500, 2000)
+        control.goto(500, 2500)
+        control.goto(0, 3000)
+        control.goto(0, 0)
+        
+
+        """
+        control.goto(0, 500)
+        control.goto(500, 500)
+        control.goto(500, 1000)
+        control.goto(0, 1500)
+        control.goto(0, 0)
+        """
+
         # control.gotoCSV("./goto.csv")
         #control.logs.makeCSV('OpticalFlow')
         #control.logs.makeTXT('OpticalFlow')
