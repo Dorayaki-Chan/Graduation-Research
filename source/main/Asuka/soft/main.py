@@ -11,8 +11,8 @@
 import socket
 import time
 import log
-import control
-IP_ADDRESS = '10.84.233.108' #サーバー（ESP32のIPアドレス）
+# import control
+IP_ADDRESS = '10.84.233.70' #サーバー（ESP32のIPアドレス）
 PORT = 5000 #ポート番号
 BUFFER_SIZE = 4092 #一度に受け取るデータの大きさを指定
 RECIEVE_MESSAGE = ""
@@ -31,7 +31,7 @@ class Walk:
         self.client.connect((IP_ADDRESS, PORT))
 
         # あすかの制御クラスをインスタンス化
-        self.asuka = control.ControlTheCar()
+        # self.asuka = control.ControlTheCar()
 
         #ログクラスをインスタンス化
         self.logs = log.Logs()
@@ -60,7 +60,8 @@ class Walk:
                 self.logs.addAll(self.tx, self.ty, 0, walk_X, walk_y, 0)
                 if gotoFlag:
                     # 移動司令を出す
-                    self.asuka.goto(self.tx, self.ty)
+                    # self.asuka.goto(self.tx, self.ty)
+                    pass
             else:
                 print("データが破損してます")
                 pass 
@@ -72,9 +73,9 @@ def main():
         while True:
             pdr.receiveData(False)
     except KeyboardInterrupt:
-        pdr.asuka.logs.makeCSV('OpticalFlow')
-        pdr.asuka.logs.makeTXT('OpticalFlow')
-        pdr.logs.makeCSV('PDR')
+        # pdr.asuka.logs.makeCSV('OpticalFlow')
+        # pdr.asuka.logs.makeTXT('OpticalFlow')
+        # pdr.logs.makeCSV('PDR')
         pass
     finally:
         print("あすかの制御を終了します.")
