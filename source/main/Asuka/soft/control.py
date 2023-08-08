@@ -9,10 +9,15 @@ import time
 from pmw3901 import PMW3901, BG_CS_FRONT_BCM, BG_CS_BACK_BCM
 import math
 import serial
+import csv
 import log
 
-OPTICAL_KEISUU = 0.188679245
-OPTICAL_HANKEI = 155
+# OPTICAL_KEISUU = 0.188679245
+# OPTICAL_KEISUU = 0.33
+# OPTICAL_KEISUU = 0.20
+OPTICAL_KEISUU = 0.22
+# OPTICAL_HANKEI = 155
+OPTICAL_HANKEI = 210
 ENSHU = 2 * OPTICAL_HANKEI * math.pi
 
 # Pick the right class for the specified breakout
@@ -22,15 +27,19 @@ class DriveTheCar:
     """ロボットの動きを制御するクラス"""
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 0
-        self.bwd = 254
+        self.fwd = 30
+        self.bwd = 200
         self.rfwd = 54
         self.rbwd = 200
+        self.chosei_fwds = 121
+        self.chosei_bwds = 133
+        # self.rfwd = 104
+        # self.rbwd = 150
 
     def move_forward(self):
         # print("前進")
         # ser.write(bytes('f', 'utf-8'))
-        self.ser.write(bytes([255, self.fwd,  self.fwd, 255]))
+        self.ser.write(bytes([255,  self.fwd,  self.fwd, 255]))
 
     def move_backward(self):
         # print("後進")
@@ -46,6 +55,15 @@ class DriveTheCar:
         # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
         self.ser.write(bytes([255, self.rbwd, self.rfwd, 255]))
+
+    def chosei_fwd(self):
+        self.ser.write(bytes([255, self.chosei_fwds, self.chosei_fwds, 255]))
+
+    def chosei_right(self):
+        self.ser.write(bytes([255, 127, self.chosei_bwds, 255]))
+    
+    def chosei_left(self):
+        self.ser.write(bytes([255, self.chosei_bwds, 127, 255]))
     
     def turn_right_1(self):
         # print("右回転")
@@ -118,12 +136,23 @@ class ControlTheCar:
     def get500(self):
         """500mm前進する(魔法の係数確認用)"""
         self.__move(500)
+
+    def gotoCSV(self, filename):
+        """CSVファイルに記載された座標に順番に移動する"""
+        # CSVファイルを読み込む
+        with open(filename, 'r') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                self.goto(int(row[0]), int(row[1]))
+                print("goto", int(row[0]), int(row[1]))
     
     def __turn(self, angle):
         """指定角度回転する"""
         # 回転開始前に初期化
         self.tx = 0
         if angle < 0:
+            self.drive.chosei_right()
+            time.sleep(4)
             while (-(angle)) > self.__xToAngle(self.tx):
                 self.drive.turn_right()
                 x, y = self.__motion()
@@ -131,8 +160,12 @@ class ControlTheCar:
                 self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
             self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "右旋回:"+str(self.__xToAngle(self.tx))+"度")
-            print("左"+str(self.__xToAngle(self.tx)))
+            print("右"+str(self.__xToAngle(self.tx)))
+            self.drive.chosei_fwd()
+            time.sleep(4)
         elif angle > 0:
+            self.drive.chosei_left()
+            time.sleep(4)
             while angle > self.__xToAngle(self.tx):
                 self.drive.turn_left()
                 x, y = self.__motion()
@@ -140,7 +173,9 @@ class ControlTheCar:
                 self.logs.addAll(self.ax, self.ay, self.aangle, self.tx, self.ty, self.__xToAngle(self.tx))
             self.drive.move_stop()
             self.logs.addPoint(self.ax, self.ay, self.aangle, self.tx, self.ty, 0, "左旋回:"+str(self.__xToAngle(self.tx))+"度")
-            print("右"+str(self.__xToAngle(self.tx)))
+            print("左"+str(self.__xToAngle(self.tx)))
+            self.drive.chosei_fwd()
+            time.sleep(4)
         else:
             pass
         self.tx = 0
@@ -151,9 +186,9 @@ class ControlTheCar:
         while distance > self.ty:
             self.drive.move_forward()
             x, y = self.__motion()
+            """
             self.drive.move_stop()
             dx = 0
-            """
             if x > 0:
                 while -x < dx:
                     self.drive.turn_left_1()
@@ -178,8 +213,10 @@ class ControlTheCar:
             mx, my = self.flo.get_motion()
             x = -1 * mx * OPTICAL_KEISUU
             y = my * OPTICAL_KEISUU
+            # print(my, mx)
             self.tx += x
             self.ty += y
+            # print(self.tx)
             time.sleep(0.01)
             return x, y
         except RuntimeError:
@@ -238,11 +275,31 @@ def main():
     try:
         #time.sleep(10)
         control = ControlTheCar()
-        control.get500()
-        control.get180()
-        # control.goto(-100, 100)
-        # control.goto(100, 200)
-        # control.goto(0, 0)
+        # control.get500()
+        # control.get180()
+        # control.goto(-100, 1770)
+        #control.goto(0, 2500)
+        
+        # control.goto(0, 50)
+        #control.goto(500, 1000)
+
+        
+        control.goto(0, 2000)
+        control.goto(500, 2000)
+        control.goto(500, 2500)
+        control.goto(0, 3000)
+        control.goto(0, 0)
+        
+
+        """
+        control.goto(0, 500)
+        control.goto(500, 500)
+        control.goto(500, 1000)
+        control.goto(0, 1500)
+        control.goto(0, 0)
+        """
+
+        # control.gotoCSV("./goto.csv")
         #control.logs.makeCSV('OpticalFlow')
         #control.logs.makeTXT('OpticalFlow')
     except KeyboardInterrupt:
