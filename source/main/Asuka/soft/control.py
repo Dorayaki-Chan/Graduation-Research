@@ -15,7 +15,7 @@ import log
 # OPTICAL_KEISUU = 0.188679245
 # OPTICAL_KEISUU = 0.33
 # OPTICAL_KEISUU = 0.20
-OPTICAL_KEISUU = 0.22
+OPTICAL_KEISUU = 0.45
 # OPTICAL_HANKEI = 155
 OPTICAL_HANKEI = 210
 ENSHU = 2 * OPTICAL_HANKEI * math.pi
@@ -27,7 +27,8 @@ class DriveTheCar:
     """ロボットの動きを制御するクラス"""
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 30
+        self.fwd = 0
+        # self.fwd = 30
         self.bwd = 200
         self.rfwd = 54
         self.rbwd = 200
@@ -135,7 +136,7 @@ class ControlTheCar:
     
     def get500(self):
         """500mm前進する(魔法の係数確認用)"""
-        self.__move(500)
+        self.__move(50)
 
     def gotoCSV(self, filename):
         """CSVファイルに記載された座標に順番に移動する"""
@@ -275,7 +276,7 @@ def main():
     try:
         #time.sleep(10)
         control = ControlTheCar()
-        # control.get500()
+        control.get500()
         # control.get180()
         # control.goto(-100, 1770)
         #control.goto(0, 2500)
@@ -283,12 +284,12 @@ def main():
         # control.goto(0, 50)
         #control.goto(500, 1000)
 
-        
+        """
         control.goto(0, 2000)
         control.goto(500, 2000)
         control.goto(500, 2500)
         control.goto(0, 3000)
-        control.goto(0, 0)
+        control.goto(0, 0)"""
         
 
         """
