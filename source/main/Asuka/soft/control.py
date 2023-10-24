@@ -33,37 +33,38 @@ class DriveTheCar:
         self.rbwd = 200
         self.chosei_fwds = 121
         self.chosei_bwds = 133
+        self.rfKeisu = 0.5
         # self.rfwd = 104
         # self.rbwd = 150
 
     def move_forward(self):
         # print("前進")
         # ser.write(bytes('f', 'utf-8'))
-        self.ser.write(bytes([255,  self.fwd,  self.fwd, 255]))
+        self.ser.write(bytes([255,  self.fwd,  self.fwd*self.rfKeisu, 255]))
 
     def move_backward(self):
         # print("後進")
         # ser.write(bytes('b', 'utf-8'))
-        self.ser.write(bytes([255, self.bwd, self.bwd, 255]))
+        self.ser.write(bytes([255, self.bwd, self.bwd*self.rfKeisu, 255]))
 
     def turn_right(self):
         # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
-        self.ser.write(bytes([255, self.rfwd,  self.rbwd, 255]))
+        self.ser.write(bytes([255, self.rfwd,  self.rbwd*self.rfKeisu, 255]))
 
     def turn_left(self):
         # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
-        self.ser.write(bytes([255, self.rbwd, self.rfwd, 255]))
+        self.ser.write(bytes([255, self.rbwd, self.rfwd*self.rfKeisu, 255]))
 
     def chosei_fwd(self):
-        self.ser.write(bytes([255, self.chosei_fwds, self.chosei_fwds, 255]))
+        self.ser.write(bytes([255, self.chosei_fwds, self.chosei_fwds*self.rfKeisu, 255]))
 
     def chosei_right(self):
-        self.ser.write(bytes([255, 127, self.chosei_bwds, 255]))
+        self.ser.write(bytes([255, 127, self.chosei_bwds*self.rfKeisu, 255]))
     
     def chosei_left(self):
-        self.ser.write(bytes([255, self.chosei_bwds, 127, 255]))
+        self.ser.write(bytes([255, self.chosei_bwds, 127*self.rfKeisu, 255]))
     
     def turn_right_1(self):
         # print("右回転")
