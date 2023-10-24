@@ -40,48 +40,48 @@ class DriveTheCar:
     def move_forward(self):
         # print("前進")
         # ser.write(bytes('f', 'utf-8'))
-        self.ser.write(bytes([255,  int(self.fwd),  int(self.fwd*self.rfKeisu), 255]))
+        self.ser.write(bytes([255,  int(self.fwd),  int(self.fwd), 255]))
 
     def move_backward(self):
         # print("後進")
         # ser.write(bytes('b', 'utf-8'))
-        self.ser.write(bytes([255, int(self.bwd), int(self.bwd*self.rfKeisu), 255]))
+        self.ser.write(bytes([255, int(self.bwd*self.rfKeisu), int(self.bwd), 255]))
 
     def turn_right(self):
         # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
-        self.ser.write(bytes([255, int(self.rfwd),  int(self.rbwd*self.rfKeisu), 255]))
+        self.ser.write(bytes([255, int(self.rfwd*self.rfKeisu),  int(self.rbwd), 255]))
 
     def turn_left(self):
         # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
-        self.ser.write(bytes([255, int(self.rbwd), int(self.rfwd*self.rfKeisu), 255]))
+        self.ser.write(bytes([255, int(self.rbwd*self.rfKeisu), int(self.rfwd), 255]))
 
     def chosei_fwd(self):
-        self.ser.write(bytes([255, int(self.chosei_fwds), int(self.chosei_fwds*self.rfKeisu), 255]))
+        self.ser.write(bytes([255, int(self.chosei_fwds*self.rfKeisu), int(self.chosei_fwds), 255]))
 
     def chosei_right(self):
-        self.ser.write(bytes([255, int(127), int(self.chosei_bwds*self.rfKeisu), 255]))
+        self.ser.write(bytes([255, int(127*self.rfKeisu), int(self.chosei_bwds), 255]))
     
     def chosei_left(self):
-        self.ser.write(bytes([255, int(self.chosei_bwds), int(127*self.rfKeisu), 255]))
+        self.ser.write(bytes([255, int(self.chosei_bwds*self.rfKeisu), int(127), 255]))
     
     def turn_right_1(self):
         # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
-        self.ser.write(bytes([255, int(self.rfwd), int(127), 255]))
+        self.ser.write(bytes([255, int(self.rfwd*self.rfKeisu), int(127), 255]))
         
 
     def turn_left_1(self):
         # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
-        self.ser.write(bytes([255, 127,  self.rfwd, 255]))
+        self.ser.write(bytes([255, int(127*self.rfKeisu),  self.rfwd, 255]))
         
 
     def move_stop(self):
         # print("停止")
         # ser.write(bytes('s', 'utf-8'))
-        self.ser.write(bytes([255, 127,  127, 255]))
+        self.ser.write(bytes([255, int(127*self.rfKeisu),  127, 255]))
 
 class ControlTheCar:
     """ロボットの動きを決定するクラス"""
