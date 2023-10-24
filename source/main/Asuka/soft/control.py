@@ -40,7 +40,7 @@ class DriveTheCar:
     def move_forward(self):
         # print("前進")
         # ser.write(bytes('f', 'utf-8'))
-        self.ser.write(bytes([255,  int(self.fwd),  int(self.fwd), 255]))
+        self.ser.write(bytes([255,  int(self.fwd*self.rfKeisu),  int(self.fwd), 255]))
 
     def move_backward(self):
         # print("後進")
