@@ -13,9 +13,7 @@ import csv
 import log
 
 # OPTICAL_KEISUU = 0.188679245
-# OPTICAL_KEISUU = 0.33
-# OPTICAL_KEISUU = 0.20
-OPTICAL_KEISUU = 0.22
+OPTICAL_KEISUU = 0.4
 # OPTICAL_HANKEI = 155
 OPTICAL_HANKEI = 210
 ENSHU = 2 * OPTICAL_HANKEI * math.pi
@@ -23,48 +21,48 @@ ENSHU = 2 * OPTICAL_HANKEI * math.pi
 # Pick the right class for the specified breakout
 SensorClass = PMW3901 
 
+# 右が早い
 class DriveTheCar:
     """ロボットの動きを制御するクラス"""
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyACM0', 9600)
-        self.fwd = 30
-        self.bwd = 200
-        self.rfwd = 54
+        self.speed = 30
+        self.rfwd = 54      
         self.rbwd = 200
         self.chosei_fwds = 121
         self.chosei_bwds = 133
-        self.rfKeisu = 0.5
+        self.rfKeisu = 0.792
         # self.rfwd = 104
         # self.rbwd = 150
 
     def move_forward(self):
         # print("前進")
         # ser.write(bytes('f', 'utf-8'))
-        self.ser.write(bytes([255,  int(self.fwd*self.rfKeisu),  int(self.fwd), 255]))
+        self.ser.write(bytes([255,  self.__fwd(self.speed),  self.__fwd(self.speed*self.rfKeisu), 255]))
 
     def move_backward(self):
         # print("後進")
         # ser.write(bytes('b', 'utf-8'))
-        self.ser.write(bytes([255, int(self.bwd*self.rfKeisu), int(self.bwd), 255]))
+        self.ser.write(bytes([255, self.__bwd(self.speed), self.__bwd(self.speed*self.rfKeisu), 255]))
 
     def turn_right(self):
         # print("右回転")
         # ser.write(bytes('r', 'utf-8'))
-        self.ser.write(bytes([255, int(self.rfwd*self.rfKeisu),  int(self.rbwd), 255]))
+        self.ser.write(bytes([255, self.__fwd(self.speed),  self.__bwd(self.speed*self.rfKeisu), 255]))
 
     def turn_left(self):
         # print("左回転")
         # ser.write(bytes('l', 'utf-8'))
-        self.ser.write(bytes([255, int(self.rbwd*self.rfKeisu), int(self.rfwd), 255]))
+        self.ser.write(bytes([255, self.__bwd(self.speed), self.__fwd(self.speed*self.rfKeisu), 255]))
 
     def chosei_fwd(self):
-        self.ser.write(bytes([255, int(self.chosei_fwds*self.rfKeisu), int(self.chosei_fwds), 255]))
+        self.ser.write(bytes([255, int(self.chosei_fwds), int(self.chosei_fwds), 255]))
 
     def chosei_right(self):
-        self.ser.write(bytes([255, int(127*self.rfKeisu), int(self.chosei_bwds), 255]))
+        self.ser.write(bytes([255, int(127), int(self.chosei_bwds), 255]))
     
     def chosei_left(self):
-        self.ser.write(bytes([255, int(self.chosei_bwds*self.rfKeisu), int(127), 255]))
+        self.ser.write(bytes([255, int(self.chosei_bwds), int(127), 255]))
     
     def turn_right_1(self):
         # print("右回転")
@@ -81,7 +79,15 @@ class DriveTheCar:
     def move_stop(self):
         # print("停止")
         # ser.write(bytes('s', 'utf-8'))
-        self.ser.write(bytes([255, int(127*self.rfKeisu),  127, 255]))
+        self.ser.write(bytes([255, 127,  127, 255]))
+    
+    def __fwd(self, abs_speed):
+        return int(127-abs_speed)
+    
+    def __bwd(self, abs_speed):
+        return int(127+abs_speed)
+    
+
 
 class ControlTheCar:
     """ロボットの動きを決定するクラス"""
@@ -277,26 +283,12 @@ def main():
         #time.sleep(10)
         control = ControlTheCar()
         # control.get500()
-        # control.get180()
-        # control.goto(-100, 1770)
-        #control.goto(0, 2500)
-        
-        # control.goto(0, 50)
-        #control.goto(500, 1000)
-
-        
-        control.goto(0, 2000)
-        control.goto(500, 2000)
-        control.goto(500, 2500)
-        control.goto(0, 3000)
-        control.goto(0, 0)
-        
+        control.get180()
 
         """
-        control.goto(0, 500)
-        control.goto(500, 500)
-        control.goto(500, 1000)
-        control.goto(0, 1500)
+        control.goto(0, 3000)
+        control.goto(3000, 3000)
+        control.goto(3000, 0)
         control.goto(0, 0)
         """
 
