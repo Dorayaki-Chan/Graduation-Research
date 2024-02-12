@@ -1,0 +1,15 @@
+1. README.mdを参考にして、LRFをセットアップ
+2. hokuyolxライブラリをインストール
+https://github.com/SkoltechRobotics/hokuyolx
+3. Capture-robot-trajectory.pyを起動すれば、LRFのデータが取得できます
+
+・定数について
+# よく分かりません
+DMAX
+IMIN
+IMAX
+
+# 閾値
+THRESHOLD:LRFで物体を別物体として認識する閾値
+ROBOT_MINSIZE:ロボットとしてとらえる物体の最小サイズ
+ROBOT_MAXSIZE:ロボットとしてとらえる物体の最大サイズ
